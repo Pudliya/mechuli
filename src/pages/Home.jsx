@@ -1,9 +1,10 @@
 import React from 'react';
+import DetailBar from '../components/DetailBar';
 
 function Home() {
   return (
     <>
-      <div>Home</div>
+      <DetailBar />
     </>
   );
 }
