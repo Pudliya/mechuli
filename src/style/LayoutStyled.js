@@ -7,7 +7,6 @@ export const LayoutDiv = styled.div`
   justify-content: flex-start;
   background-color: black;
   padding: 10px;
-  font-size: 24px; /* 로고 크기 조정 */
 `;
 
 export const Logo = styled.div`

@@ -18,7 +18,7 @@ function Layout() {
           <img
             src={mechuliLogo}
             alt="Mechuli 로고"
-            style={{ height: '50px' }}
+            style={{ height: '55px' }}
           />
         </Logo>
         <SearchForm>
