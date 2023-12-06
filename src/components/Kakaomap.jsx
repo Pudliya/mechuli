@@ -1,61 +1,150 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { StMap } from '../style/KakaomapStyled';
 
 const { kakao } = window;
 
+// function Kakaomap({ searchPlace }) {
+//   useEffect(() => {
+//     var infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
+//     const container = document.getElementById('myMap');
+//     const options = {
+//       center: new kakao.maps.LatLng(37.5575, 126.9248),
+//       level: 3
+//     };
+//     const map = new kakao.maps.Map(container, options);
+
+//     const ps = new kakao.maps.services.Places();
+
+//     ps.keywordSearch(searchPlace, placesSearchCB);
+
+//     function placesSearchCB(data, status, pagination) {
+//       if (status === kakao.maps.services.Status.OK) {
+//         let bounds = new kakao.maps.LatLngBounds();
+
+//         for (let i = 0; i < data.length; i++) {
+//           displayMarker(data[i]);
+//           bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
+//         }
+
+//         map.setBounds(bounds);
+
+//         map.setLevel(4, {
+//           animate: {
+//             duration: 1000
+//           }
+//         });
+//       }
+//     }
+
+//     function displayMarker(place) {
+//       let marker = new kakao.maps.Marker({
+//         map: map,
+//         position: new kakao.maps.LatLng(place.y, place.x)
+//       });
+
+//       // 마커에 클릭 이벤트를 등록합니다
+//       kakao.maps.event.addListener(marker, 'click', function () {
+//         // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
+//         infowindow.setContent(
+//           '<div style="padding:5px;font-size:12px;">' +
+//             place.place_name +
+//             '</div>'
+//         );
+//         infowindow.open(map, marker);
+//       });
+//     }
+//   }, [searchPlace]);
+
+//   return (
+//     <>
+//       <StMap id="myMap"></StMap>
+//     </>
+//   );
+// }
+
+// 최광희 Geolocation API를 사용하기 Start---------------------
+
 function Kakaomap({ searchPlace }) {
+  const mapRef = useRef(null);
+  const infowindow = useRef(new kakao.maps.InfoWindow({ zIndex: 1 }));
+
   useEffect(() => {
-    var infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
     const container = document.getElementById('myMap');
     const options = {
       center: new kakao.maps.LatLng(37.5575, 126.9248),
       level: 3
     };
     const map = new kakao.maps.Map(container, options);
+    mapRef.current = map;
 
-    const ps = new kakao.maps.services.Places();
-
-    ps.keywordSearch(searchPlace, placesSearchCB);
-
-    function placesSearchCB(data, status, pagination) {
-      if (status === kakao.maps.services.Status.OK) {
-        let bounds = new kakao.maps.LatLngBounds();
-
-        for (let i = 0; i < data.length; i++) {
-          displayMarker(data[i]);
-          bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
+    // Geolocation API를 이용하여 사용자의 위치 가져오기
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          const userLatLng = new kakao.maps.LatLng(latitude, longitude);
+          map.setCenter(userLatLng);
+          handleSearch(searchPlace);
+        },
+        (error) => {
+          console.error('Error getting user location:', error);
+          handleSearch(searchPlace);
         }
-
-        map.setBounds(bounds);
-
-        map.setLevel(4, { animate: true });
-
-        map.setLevel(4, {
-          animate: {
-            duration: 1000
-          }
-        });
-      }
+      );
+    } else {
+      console.error('Geolocation is not supported by this browser.');
+      handleSearch(searchPlace);
     }
 
-    function displayMarker(place) {
-      let marker = new kakao.maps.Marker({
-        map: map,
-        position: new kakao.maps.LatLng(place.y, place.x)
-      });
-
-      // 마커에 클릭이벤트를 등록합니다
-      kakao.maps.event.addListener(marker, 'click', function () {
-        // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
-        infowindow.setContent(
-          '<div style="padding:5px;font-size:12px;">' +
-            place.place_name +
-            '</div>'
-        );
-        infowindow.open(map, marker);
-      });
-    }
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, [searchPlace]);
+
+  const handleResize = () => {
+    const map = mapRef.current;
+    if (map) {
+      setTimeout(() => {
+        kakao.maps.event.trigger(map, 'resize');
+      }, 100);
+    }
+  };
+
+  const handleSearch = (keyword) => {
+    const ps = new kakao.maps.services.Places();
+    ps.keywordSearch(keyword, placesSearchCB);
+  };
+
+  const placesSearchCB = (data, status, pagination) => {
+    if (status === kakao.maps.services.Status.OK) {
+      let bounds = new kakao.maps.LatLngBounds();
+      for (let i = 0; i < data.length; i++) {
+        displayMarker(data[i]);
+        bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
+      }
+      mapRef.current.setBounds(bounds);
+      mapRef.current.setLevel(4, {
+        animate: {
+          duration: 1000
+        }
+      });
+    }
+  };
+
+  const displayMarker = (place) => {
+    let marker = new kakao.maps.Marker({
+      map: mapRef.current,
+      position: new kakao.maps.LatLng(place.y, place.x)
+    });
+
+    kakao.maps.event.addListener(marker, 'click', function () {
+      infowindow.current.setContent(
+        '<div style="padding:5px;font-size:12px;">' +
+          place.place_name +
+          '</div>'
+      );
+      infowindow.current.open(mapRef.current, marker);
+    });
+  };
 
   return (
     <>
@@ -63,6 +152,8 @@ function Kakaomap({ searchPlace }) {
     </>
   );
 }
+
+// 최광희 Geolocation API를 사용하기---------------------
 
 // -------------------------------테스트중---------------------------------------------
 // useEffect(() => {
@@ -100,11 +191,6 @@ function Kakaomap({ searchPlace }) {
 //   // 아래 코드는 지도 위의 마커를 제거하는 코드입니다
 //   // marker.setMap(null);
 // }, []);
-
-// // ------------------ 음식점 카테고리에 관한 마커만 생성하기 Start -----------------------------
-// // 장소 검색 객체를 생성합니다
-
-// // ------------------ 음식점 카테고리에 관한 마커만 생성하기 End -----------------------------
 
 // // ------------------------------------------------------------------------------------------
 
