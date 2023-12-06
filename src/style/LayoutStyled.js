@@ -1,5 +1,12 @@
 import styled from 'styled-components';
 
+export const StContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+`;
+
 export const StLayoutDiv = styled.div`
   width: 100%;
   height: 50px;
@@ -34,9 +41,9 @@ export const StSearchInputContainer = styled.div`
 
 export const StSearchInput = styled.input`
   width: 300px;
-  height: 27px;
+  height: 30px;
   border-radius: 20px;
-  padding-right: 40px;
+  padding: 0 40px 0 15px;
   position: relative;
 `;
 
