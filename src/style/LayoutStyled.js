@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
-export const LayoutDiv = styled.div`
+export const StLayoutDiv = styled.div`
   width: 100%;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -9,33 +10,37 @@ export const LayoutDiv = styled.div`
   padding: 10px;
 `;
 
-export const Logo = styled.div`
+export const StLogo = styled.div`
   font-size: 32px;
   font-weight: bold;
+  img {
+    width: 48px;
+  }
+  cursor: pointer;
 `;
 
-export const SearchForm = styled.form`
+export const StSearchForm = styled.form`
   display: flex;
   align-items: center;
   flex: 1;
   justify-content: center;
 `;
 
-export const SearchInputContainer = styled.div`
+export const StSearchInputContainer = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
 `;
 
-export const SearchInput = styled.input`
+export const StSearchInput = styled.input`
   width: 300px;
-  height: 40px;
+  height: 27px;
   border-radius: 20px;
   padding-right: 40px;
   position: relative;
 `;
 
-export const IconBtn = styled.button`
+export const StIconBtn = styled.button`
   right: 10px;
   top: 50%;
   transform: translateY(-50%);
