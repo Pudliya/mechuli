@@ -1,0 +1,19 @@
+{
+  "posts": [
+    {
+      "content": "ㅇㅇ",
+      "img": "blob:http://localhost:3000/630fe85b-b8e9-4ab1-b048-94bf9a37a4b8",
+      "id": 5
+    },
+    {
+      "content": "테스트",
+      "img": null,
+      "id": 6
+    },
+    {
+      "content": "햄버거",
+      "img": "blob:http://localhost:3000/aa88c10c-59dc-4336-8094-337c414e0af3",
+      "id": 7
+    }
+  ]
+}

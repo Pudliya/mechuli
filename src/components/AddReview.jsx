@@ -1,21 +1,61 @@
 import React from 'react';
-import { ListContainer, Form, Card, CardContent } from '../style/StDetailBar';
-export default function AddReview() {
+import {
+  StListContainer,
+  StForm,
+  StCard,
+  StCardContent
+} from '../style/StDetailBar';
+import { getPosts } from '../api/posts';
+import { useQuery } from 'react-query';
+export default function AddReview({ setIsModal }) {
+  // posts 조회
+  const { isLoading, isError, data } = useQuery('posts', getPosts);
+
+  if (isLoading) {
+    return (
+      <StCard>
+        <StCardContent>로딩중...</StCardContent>
+      </StCard>
+    );
+  }
+
+  if (isError) {
+    return (
+      <StCard>
+        <StCardContent>불러오기를 실패하였습니다.</StCardContent>
+      </StCard>
+    );
+  }
+
   return (
-    <ListContainer>
-      <Form>
-        <input type="text" placeholder="맛 한줄평을 남겨주세요~!" />
-        <button>추가!</button>
-      </Form>
-      <Card>
-        <CardContent>너무 맛있습니다!</CardContent>
-      </Card>
-      <Card>
-        <CardContent>바삭 끝판왕..!</CardContent>
-      </Card>
-      <Card>
-        <CardContent>최고!</CardContent>
-      </Card>
-    </ListContainer>
+    <StListContainer>
+      <StForm>
+        <p>Review</p>
+        <button
+          onClick={() => {
+            setIsModal(true);
+          }}
+          type="button"
+        >
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAABTUlEQVR4nO3XsUrEQBCA4R9ECwWrO9TSwjfQs/Ut7AQVBFsbO19Aq0M47HwCn0DB00ILIainthbiGwRBwTsGJhCXZE121mBxA9OEyX6bZBkm8A9iCtgGjoGTgDwCpkvWXgZ2gQ1g0UVvgS/gAbgLyD7QckDZyBkwzKUYe1mBPOknsBLxDQp64aBDzausqAsMGkIHwFxW2AOSiOh5CfoCLOSLY8G10Fjwb+h80U1WOAi1wj702YdaYN/plX7QdurbbpMJhXdqoBLXwCEGeEK71Axw6aD3JShqiBUMHwApsKb4WwXUDE8C7wql2vVSRd1eHRVeL/imVVAz3M+BH8BpRdQEzwLfwCuwXwOM8sRLeqpDIrGe6tBIxnBv/KqbOlzdyMNeWTyphTvedv4QXdWZessd6G+MA70vH3VtMcT6EXJBdhP6C+NLWXOzCG08Rl3mz12dLnxuAAAAAElFTkSuQmCC" />
+        </button>
+      </StForm>
+      {data.map((item) => {
+        return (
+          <StCard key={item.id}>
+            {item.img === null ? (
+              <>
+                <StCardContent>{item.content}</StCardContent>
+              </>
+            ) : (
+              <>
+                <img src={item.img} />
+                <StCardContent>{item.content}</StCardContent>
+              </>
+            )}
+          </StCard>
+        );
+      })}
+    </StListContainer>
   );
 }
