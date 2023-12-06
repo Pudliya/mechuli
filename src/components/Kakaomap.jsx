@@ -16,7 +16,6 @@ function Kakaomap() {
 
   return (
     <>
-      <div>Kakaomap</div>
       <StMap id="map"></StMap>
     </>
   );
