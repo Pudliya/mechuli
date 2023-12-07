@@ -1,5 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { StMap } from '../style/KakaomapStyled';
+import { StMap } from '../../style/KakaomapStyled';
+import styled from 'styled-components';
+
+// 최광희 Geolocation API를 사용하기 Start---------------------
 
 function Kakaomap({ searchPlace }) {
   const { kakao } = window;
@@ -7,9 +10,7 @@ function Kakaomap({ searchPlace }) {
   const currentPosRef = useRef(null);
   const infowindow = useRef(new kakao.maps.InfoWindow({ zIndex: 1 }));
   const ps = new kakao.maps.services.Places(mapRef.current);
-
-  const [places, setPlaces] = useState([]); // placesSearch data
-  const [latlng, setLatlng] = useState([]); //위도 lat , 경도 lng
+  const [places, setPlaces] = useState([]);
 
   // ------useEffect-------
 
@@ -19,14 +20,8 @@ function Kakaomap({ searchPlace }) {
       center: new kakao.maps.LatLng(37.5575, 126.9248),
       level: 5
     };
-    const initialMap = new kakao.maps.Map(container, options);
-    mapRef.current = initialMap;
-
-    // 현재 지도 위치
-    kakao.maps.event.addListener(initialMap, 'dragend', function () {
-      var latlng = initialMap.getCenter();
-      setLatlng([latlng.getLat(), latlng.getLng()]);
-    });
+    const map = new kakao.maps.Map(container, options);
+    mapRef.current = map;
 
     // Geolocation API를 이용하여 사용자의 위치 가져오기
     if (navigator.geolocation) {
@@ -34,7 +29,7 @@ function Kakaomap({ searchPlace }) {
         (position) => {
           const { latitude, longitude } = position.coords;
           const userLatLng = new kakao.maps.LatLng(latitude, longitude);
-          initialMap.setCenter(userLatLng);
+          map.setCenter(userLatLng);
           handleSearch(searchPlace);
         },
         (error) => {
@@ -118,15 +113,56 @@ function Kakaomap({ searchPlace }) {
       position: new kakao.maps.LatLng(place.y, place.x)
     });
 
+    // infowindow
+    //   kakao.maps.event.addListener(marker, 'click', function () {
+    //     console.log('place.address_name : ', place.address_name);
+    //     infowindow.current.setContent(
+    //       '<div style="font-size:12px; padding:5px">' +
+    //         place.place_name +
+    //         '<br/>' +
+    //         place.address_name +
+    //         '</div>'
+    //     );
+    //     infowindow.current.open(mapRef.current, marker);
+    //   });
+
+    // customOverlay
+    const content =
+      '<div class="wrap">' +
+      '    <div class="info">' +
+      '        <div class="title">' +
+      '            서울역' +
+      '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
+      '        </div>' +
+      '        <div class="body">' +
+      '            <div class="img">' +
+      '                <img src="https://cfile181.uf.daum.net/image/250649365602043421936D" width="73" height="70">' +
+      '           </div>' +
+      '            <div class="desc">' +
+      '                <div class="ellipsis">서울특별시 용산구 동자동 43-205</div>' +
+      '                <div class="jibun ellipsis"> 서울역은 서울특별시 용산구와 중구에 </div>' +
+      '                <div class="jibun ellipsis"> 위치한 민자역사 철도역이다. </div>' +
+      '            </div>' +
+      '        </div>' +
+      '    </div>' +
+      '</div>';
+
+    // 마커 위에 커스텀오버레이를 표시합니다
+    // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+    var overlay = new kakao.maps.CustomOverlay({
+      content: content,
+      map: mapRef.current,
+      position: marker.getPosition()
+    });
+
+    // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
     kakao.maps.event.addListener(marker, 'click', function () {
-      infowindow.current.setContent(
-        '<div style="font-size:12px; padding:5px">' +
-          place.place_name +
-          '<br/>' +
-          place.address_name +
-          '</div>'
-      );
-      infowindow.current.open(mapRef.current, marker);
+      overlay.setMap(mapRef.current);
+    });
+
+    // 맵을 클릭했을 때 커스텀 오버레이를 닫습니다.
+    kakao.maps.event.addListener(mapRef.current, 'click', function () {
+      overlay.setMap(null);
     });
   };
 
@@ -134,10 +170,6 @@ function Kakaomap({ searchPlace }) {
   useEffect(() => {
     console.log('places : ', places);
   }, [places]);
-
-  useEffect(() => {
-    console.log(latlng[0], latlng[1]);
-  }, [latlng]);
 
   return (
     <>

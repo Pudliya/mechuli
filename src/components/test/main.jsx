@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { StMap } from '../style/KakaomapStyled';
+import { StMap } from '../../style/KakaomapStyled';
 
 function Kakaomap({ searchPlace }) {
   const { kakao } = window;
@@ -7,9 +7,7 @@ function Kakaomap({ searchPlace }) {
   const currentPosRef = useRef(null);
   const infowindow = useRef(new kakao.maps.InfoWindow({ zIndex: 1 }));
   const ps = new kakao.maps.services.Places(mapRef.current);
-
-  const [places, setPlaces] = useState([]); // placesSearch data
-  const [latlng, setLatlng] = useState([]); //위도 lat , 경도 lng
+  const [places, setPlaces] = useState([]);
 
   // ------useEffect-------
 
@@ -19,14 +17,8 @@ function Kakaomap({ searchPlace }) {
       center: new kakao.maps.LatLng(37.5575, 126.9248),
       level: 5
     };
-    const initialMap = new kakao.maps.Map(container, options);
-    mapRef.current = initialMap;
-
-    // 현재 지도 위치
-    kakao.maps.event.addListener(initialMap, 'dragend', function () {
-      var latlng = initialMap.getCenter();
-      setLatlng([latlng.getLat(), latlng.getLng()]);
-    });
+    const map = new kakao.maps.Map(container, options);
+    mapRef.current = map;
 
     // Geolocation API를 이용하여 사용자의 위치 가져오기
     if (navigator.geolocation) {
@@ -34,7 +26,7 @@ function Kakaomap({ searchPlace }) {
         (position) => {
           const { latitude, longitude } = position.coords;
           const userLatLng = new kakao.maps.LatLng(latitude, longitude);
-          initialMap.setCenter(userLatLng);
+          map.setCenter(userLatLng);
           handleSearch(searchPlace);
         },
         (error) => {
@@ -134,10 +126,6 @@ function Kakaomap({ searchPlace }) {
   useEffect(() => {
     console.log('places : ', places);
   }, [places]);
-
-  useEffect(() => {
-    console.log(latlng[0], latlng[1]);
-  }, [latlng]);
 
   return (
     <>

@@ -44,7 +44,7 @@ function Layout() {
               <StSearchInput
                 value={searchInput}
                 onChange={serchInputOnChangeHandler}
-                placeholder="검색어를 입력해주세요."
+                placeholder="지역 + 메뉴"
               />
               <StIconBtn type="submit">
                 <FiSearch />

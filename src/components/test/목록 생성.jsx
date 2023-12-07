@@ -1,5 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { StMap } from '../style/KakaomapStyled';
+import React, { useEffect, useRef } from 'react';
+import { StMap } from '../../style/KakaomapStyled';
+
+// 최광희 Geolocation API를 사용하기 Start---------------------
 
 function Kakaomap({ searchPlace }) {
   const { kakao } = window;
@@ -7,9 +9,6 @@ function Kakaomap({ searchPlace }) {
   const currentPosRef = useRef(null);
   const infowindow = useRef(new kakao.maps.InfoWindow({ zIndex: 1 }));
   const ps = new kakao.maps.services.Places(mapRef.current);
-
-  const [places, setPlaces] = useState([]); // placesSearch data
-  const [latlng, setLatlng] = useState([]); //위도 lat , 경도 lng
 
   // ------useEffect-------
 
@@ -19,14 +18,8 @@ function Kakaomap({ searchPlace }) {
       center: new kakao.maps.LatLng(37.5575, 126.9248),
       level: 5
     };
-    const initialMap = new kakao.maps.Map(container, options);
-    mapRef.current = initialMap;
-
-    // 현재 지도 위치
-    kakao.maps.event.addListener(initialMap, 'dragend', function () {
-      var latlng = initialMap.getCenter();
-      setLatlng([latlng.getLat(), latlng.getLng()]);
-    });
+    const map = new kakao.maps.Map(container, options);
+    mapRef.current = map;
 
     // Geolocation API를 이용하여 사용자의 위치 가져오기
     if (navigator.geolocation) {
@@ -34,7 +27,7 @@ function Kakaomap({ searchPlace }) {
         (position) => {
           const { latitude, longitude } = position.coords;
           const userLatLng = new kakao.maps.LatLng(latitude, longitude);
-          initialMap.setCenter(userLatLng);
+          map.setCenter(userLatLng);
           handleSearch(searchPlace);
         },
         (error) => {
@@ -63,6 +56,16 @@ function Kakaomap({ searchPlace }) {
   };
 
   const handleSearch = (keyword) => {
+    // ---
+    // const geocoder = new kakao.maps.services.Geocoder();
+    // geocoder.addressSearch(keyword, function (result, status) {
+    //   if (status === kakao.maps.services.Status.OK) {
+    //     let coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+    //     currentPosRef.current = coords; //currentPos
+    //   }
+    // });
+    // ---
+
     const searchOption = {
       category_group_code: 'FD6', //키워드 필터링을 위한 카테고리 코드 / FD6 음식점, CE7 카페
       radius: 3000, // 미터(m) 단위. 기본값은 5000, 0~20000까지 가능
@@ -77,26 +80,14 @@ function Kakaomap({ searchPlace }) {
 
   // 여기에 data 배열 추출!
   const placesSearchCB = (data, status, pagination) => {
-    // console.log('data : ', data);
+    console.log('data : ', data);
 
     if (status === kakao.maps.services.Status.OK) {
       let bounds = new kakao.maps.LatLngBounds();
-      const newPlaces = [];
-
       for (let i = 0; i < data.length; i++) {
         displayMarker(data[i]);
         bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
-        newPlaces.push({
-          id: data[i].id,
-          place_name: data[i].place_name,
-          address_name: data[i].address_name,
-          road_address_name: data[i].road_address_name,
-          position: new window.kakao.maps.LatLng(data[i].y, data[i].x),
-          phone: data[i].phone,
-          place_url: data[i].place_url
-        });
       }
-      setPlaces(newPlaces);
       mapRef.current.setBounds(bounds);
       mapRef.current.setLevel(4, {
         animate: {
@@ -110,6 +101,9 @@ function Kakaomap({ searchPlace }) {
       alert('검색 결과 중 오류가 발생했습니다.');
       return;
     }
+
+    // displayPlaces(data);
+    // displayPagination(pagination);
   };
 
   const displayMarker = (place) => {
@@ -120,24 +114,23 @@ function Kakaomap({ searchPlace }) {
 
     kakao.maps.event.addListener(marker, 'click', function () {
       infowindow.current.setContent(
-        '<div style="font-size:12px; padding:5px">' +
+        '<div style="padding:5px;font-size:12px;">' +
           place.place_name +
-          '<br/>' +
-          place.address_name +
           '</div>'
       );
       infowindow.current.open(mapRef.current, marker);
     });
   };
 
-  // places 데이터 확인
-  useEffect(() => {
-    console.log('places : ', places);
-  }, [places]);
+  // const displayPlaces = (places) => {
+  //   var listEl = document.getElementById('placesList'),
+  //     menuEl = document.getElementById('menu_wrap'),
+  //     fragment = document.createDocumentFragment(),
+  //     bounds = new kakao.maps.LatLngBounds(),
+  //     listStr = '';
+  // };
 
-  useEffect(() => {
-    console.log(latlng[0], latlng[1]);
-  }, [latlng]);
+  // const displayPagination = (pagination) => {};
 
   return (
     <>
@@ -145,5 +138,7 @@ function Kakaomap({ searchPlace }) {
     </>
   );
 }
+
+// 최광희 Geolocation API를 사용하기---------------------
 
 export default Kakaomap;
