@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FiSearch } from 'react-icons/fi';
 import mechuliLogo from '../assets/logo/mechuli_logo.png';
-import Kakaomap from '../components/Kakaomap';
+import Kakaomap from './Kakaomap1';
 import {
   StContainer,
   StIconBtn,

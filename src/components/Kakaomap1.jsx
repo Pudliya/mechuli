@@ -9,15 +9,15 @@ function Kakaomap({ searchPlace }) {
   const ps = new kakao.maps.services.Places(mapRef.current);
 
   const [places, setPlaces] = useState([]); // placesSearch data
-  const [latlng, setLatlng] = useState([]); //위도 lat , 경도 lng
+  const [latlng, setLatlng] = useState([37.566826, 126.9786567]); //위도 lat , 경도 lng
 
   // ------useEffect-------
 
   useEffect(() => {
     const container = document.getElementById('myMap');
     const options = {
-      center: new kakao.maps.LatLng(37.5575, 126.9248),
-      level: 5
+      center: new kakao.maps.LatLng(latlng[0], latlng[1]),
+      level: 7
     };
     const initialMap = new kakao.maps.Map(container, options);
     mapRef.current = initialMap;
@@ -49,7 +49,7 @@ function Kakaomap({ searchPlace }) {
 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, [searchPlace]);
+  }, [latlng]);
 
   // ------useEffect-------
 
@@ -65,11 +65,12 @@ function Kakaomap({ searchPlace }) {
   const handleSearch = (keyword) => {
     const searchOption = {
       category_group_code: 'FD6', //키워드 필터링을 위한 카테고리 코드 / FD6 음식점, CE7 카페
-      radius: 3000, // 미터(m) 단위. 기본값은 5000, 0~20000까지 가능
-      size: 15 // 기본값은 15, 1~15까지 가능
+      radius: 5000, // 미터(m) 단위. 기본값은 5000, 0~20000까지 가능
+      size: 15, // 기본값은 15, 1~15까지 가능
       // location: currentPosRef.current, // 중심 좌표. 특정 지역을 기준으로 검색한다.
       // sort: kakao.maps.services.SortBy.DISTANCE // 정렬 옵션. DISTANCE 일 경우 지정한 좌표값에 기반하여 동작함. 기본값은 ACCURACY (정확도 순)
       // useMapCenter: true
+      location: new kakao.maps.LatLng(latlng[0], latlng[1])
     };
 
     ps.keywordSearch(keyword, placesSearchCB, searchOption);
@@ -98,9 +99,9 @@ function Kakaomap({ searchPlace }) {
       }
       setPlaces(newPlaces);
       mapRef.current.setBounds(bounds);
-      mapRef.current.setLevel(4, {
+      mapRef.current.setLevel(5, {
         animate: {
-          duration: 1000
+          duration: 0
         }
       });
     } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
