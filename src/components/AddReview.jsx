@@ -3,11 +3,12 @@ import {
   StListContainer,
   StForm,
   StCard,
-  StCardContent
+  StCardContent,
+  StReviewDeleteButton
 } from '../style/StDetailBar';
 import { getPosts } from '../api/posts';
 import { useQuery } from 'react-query';
-export default function AddReview({ setIsModal }) {
+export default function AddReview({ setIsModal, setIsRemoveModal }) {
   // posts 조회
   const { isLoading, isError, data } = useQuery('posts', getPosts);
 
@@ -42,18 +43,25 @@ export default function AddReview({ setIsModal }) {
       </StForm>
       {data.map((item) => {
         return (
-          <StCard key={item.id}>
-            {item.img === null ? (
-              <>
+          <>
+            <StCard key={item.id}>
+              {item.img === null ? (
                 <StCardContent>{item.content}</StCardContent>
-              </>
-            ) : (
-              <>
-                <img src={item.img} />
-                <StCardContent>{item.content}</StCardContent>
-              </>
-            )}
-          </StCard>
+              ) : (
+                <>
+                  <img src={item.img} />
+                  <StCardContent>{item.content}</StCardContent>
+                </>
+              )}
+            </StCard>
+            <StReviewDeleteButton
+              onClick={() => {
+                setIsRemoveModal(true);
+              }}
+            >
+              삭제
+            </StReviewDeleteButton>
+          </>
         );
       })}
     </StListContainer>

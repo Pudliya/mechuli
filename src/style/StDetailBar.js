@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const StContainer = styled.div`
+  margin-left: -400px;
   width: 400px;
   height: 100vh;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
@@ -10,27 +11,26 @@ export const StContainer = styled.div`
   border-radius: 0 20px 20px 0;
   align-items: center;
   padding: 20px;
-  transition: transform 0.3s ease-in-out;
+  transition: all 0.4s ease-in-out;
+  &.active {
+    margin-left: 0;
+  }
 `;
 
 export const StAvatarFigure = styled.div`
   width: 300px;
   height: 200px;
-  overflow: hidden;
-  object-fit: cover;
   border-radius: 10px;
   margin: 30px 0;
   & img {
     width: 300px;
     height: 200px;
-    overflow: hidden;
-    object-fit: cover;
     border-radius: 10px;
   }
 `;
 export const StTitle = styled.div`
   text-align: center;
-  width: 250px;
+  width: 300px;
   font-size: 30px;
   margin-bottom: 15px;
   border-bottom: 5px solid blanchedalmond;
@@ -45,35 +45,67 @@ export const StAddress = styled.div`
   line-height: 20px;
   border-radius: 10px;
   padding-bottom: 5px;
+  text-align: center;
 `;
 export const StContent = styled.div`
   font-size: 16px;
   width: 300px;
-  height: 135px;
   margin-bottom: 20px;
   line-height: 23px;
   border-bottom: 5px solid blanchedalmond;
   border-radius: 10px;
+  & p {
+    margin-bottom: 5px;
+    text-align: center;
+  }
 `;
 
 // Toggle
 export const StToggleButton = styled.div`
   position: absolute;
-  left: 400px;
+  left: 390px;
   top: 320px;
   width: 50px;
-  height: 230px;
+  height: 250px;
   background-color: #fddf62;
   border-radius: 0 10px 10px 0;
+  scale: 0.6;
   cursor: pointer;
   transition: transform 0.3s ease-in-out;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   & img {
-    margin-top: 90px;
+    margin-top: 100px;
     transition: all 0.2s ease-in-out;
     &:hover {
       transform: scale(1.3);
     }
+  }
+`;
+
+export const StDetailbarCloseButton = styled.div`
+  position: absolute;
+  margin-left: -480px;
+  left: 385px;
+  top: 15px;
+  width: 80px;
+  height: 80px;
+  background-color: #fddf62;
+  border-radius: 0 10px 10px 0;
+  scale: 0.6;
+  cursor: pointer;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  & img {
+    margin-top: 25px;
+    margin-left: 23px;
+    transition: all 0.2s ease-in-out;
+    scale: 1.5;
+    &:hover {
+      transform: scale(1.3);
+    }
+  }
+  transition: all 0.4s ease-in-out;
+  &.close {
+    margin-left: 0;
   }
 `;
 
@@ -127,7 +159,6 @@ export const StForm = styled.form`
 
 export const StCard = styled.div`
   width: 350px;
-  height: 130px;
   border-bottom: 5px solid blanchedalmond;
   margin-top: 10px;
   display: flex;
@@ -136,14 +167,44 @@ export const StCard = styled.div`
   border-radius: 10px;
   padding-bottom: 3px;
   margin-bottom: 5px;
+  animation: modal-show 0.5s;
+  @keyframes modal-show {
+    from {
+      opacity: 0;
+      margin-top: -50px;
+    }
+    to {
+      opacity: 1;
+      margin-top: 0;
+    }
+  }
   & img {
     width: 100px;
     height: 100px;
     border-radius: 10px;
+    object-fit: cover;
+    margin-bottom: 5px;
   }
 `;
 
 export const StCardContent = styled.p`
   font-size: 15px;
   padding: 5px 10px;
+`;
+
+export const StReviewDeleteButton = styled.button`
+  border: 0;
+  border-radius: 10px;
+  background-color: blanchedalmond;
+  transition: all 0.2s ease-in-out;
+  font-weight: 700;
+  color: brown;
+  cursor: pointer;
+  margin-left: 250px;
+  padding: 5px 8px;
+  margin-top: 5px;
+  &:hover {
+    background-color: white;
+    transform: scale(1.1);
+  }
 `;
