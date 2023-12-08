@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setPlace } from '../redux/slices/placeSlice';
 import defaultMarker from '../assets/marker/defaultMarker.png';
 import styled from 'styled-components';
+// import { constrainedMemory } from 'process';
 
 function Kakaomap({
   searchPlace,

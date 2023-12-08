@@ -9,7 +9,7 @@ export const StContainer = styled.div`
   width: 400px;
   height: 100vh;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  background-color: lightgray;
+  background-color: blanchedalmond;
   display: flex;
   flex-direction: column;
   border-radius: 0 20px 20px 0;
@@ -37,7 +37,7 @@ export const StTitle = styled.div`
   width: 300px;
   font-size: 30px;
   margin-bottom: 15px;
-  border-bottom: 5px solid blanchedalmond;
+  border-bottom: 5px solid #fdd5a5;
   border-radius: 15px;
   padding-bottom: 5px;
 `;
@@ -45,7 +45,7 @@ export const StInfo = styled.div`
   width: 300px;
   font-size: 15px;
   margin-bottom: 10px;
-  border-bottom: 5px solid blanchedalmond;
+  border-bottom: 5px solid #fdd5a5;
   line-height: 20px;
   border-radius: 10px;
   padding-bottom: 5px;
@@ -56,7 +56,7 @@ export const StDetailbarCloseButton = styled.div`
   position: absolute;
   z-index: 3;
   margin-left: -480px;
-  left: 385px;
+  left: 380px;
   top: 60px;
   width: 80px;
   height: 80px;
@@ -86,7 +86,7 @@ export const StDetailbarCloseButton = styled.div`
 export const StListContainer = styled.div`
   width: 380px;
   height: 400px;
-  border: 3px solid blanchedalmond;
+  border: 3px solid #fdd5a5;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -117,7 +117,7 @@ export const StForm = styled.form`
   & button {
     border: 0;
     border-radius: 10px;
-    background-color: blanchedalmond;
+    background-color: #fdd5a5;
     transition: all 0.2s ease-in-out;
     font-weight: 700;
     color: brown;

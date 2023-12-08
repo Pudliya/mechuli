@@ -11,6 +11,7 @@ import {
 import DetailModal from './DetailModal';
 import { useState } from 'react';
 import DetailRemoveModa from './DetailRemoveModa';
+import { useSelector } from 'react-redux';
 
 export default function DetailBar({ isOpenDetailBar, setIsOpneDetailBar }) {
   const [isModal, setIsModal] = useState(false);
@@ -43,13 +44,13 @@ export default function DetailBar({ isOpenDetailBar, setIsOpneDetailBar }) {
           setIsRemoveModal={setIsRemoveModal}
           setFoundTarget={setFoundTarget}
         />
-        <DetailModal isModal={isModal} setIsModal={setIsModal} />
-        <DetailRemoveModa
-          isRemoveModal={isRemoveModal}
-          setIsRemoveModal={setIsRemoveModal}
-          foundTarget={foundTarget}
-        />
       </StContainer>
+      <DetailModal isModal={isModal} setIsModal={setIsModal} />
+      <DetailRemoveModa
+        isRemoveModal={isRemoveModal}
+        setIsRemoveModal={setIsRemoveModal}
+        foundTarget={foundTarget}
+      />
     </>
   );
 }
