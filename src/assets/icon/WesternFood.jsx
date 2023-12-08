@@ -4,7 +4,7 @@ function WesternFood() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="800"
+      width="100%"
       className="img-fluid"
       style={{
         WebkitTransformOrigin: '50% 50%',
@@ -14,7 +14,7 @@ function WesternFood() {
         WebkitTransition: 'transform 200ms ease-in-out 0s',
         transition: 'transform 200ms ease-in-out 0s'
       }}
-      height="569"
+      height="100%"
       cursor="move"
       viewBox="0 0 8000 5690"
     >
