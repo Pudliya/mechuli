@@ -24,7 +24,7 @@ function Kakaomap({ searchPlace, searchBtnToggle }) {
 
     // 현재 지도 위치
     kakao.maps.event.addListener(initialMap, 'dragend', function () {
-      var latlng = initialMap.getCenter();
+      let latlng = initialMap.getCenter();
       setLatlng([latlng.getLat(), latlng.getLng()]);
     });
 
