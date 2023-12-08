@@ -179,6 +179,8 @@ function Kakaomap({
       position: new kakao.maps.LatLng(place.y, place.x)
     });
 
+    //  let content = ` <div  class="placeinfo">   <a class="title" href="${place.place_url}" target="_blank" title="${place.place_name}">${place.place_name}</a>`;
+
     let content =
       '<div class="placeinfo">' +
       '   <a class="title" href="' +
