@@ -28,9 +28,7 @@ export default function SideBarContainer() {
           height: '100%',
           verticalAlign: 'top'
         }}
-      >
-        <p>지도 위치</p>
-      </div>
+      ></div>
     </>
   );
 }

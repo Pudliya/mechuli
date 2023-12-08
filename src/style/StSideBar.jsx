@@ -1,9 +1,12 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 export const StToggleContainer = styled.div`
   height: 95vh;
-  position: relative;
+  position: absolute;
+  top: 5vh;
+  z-index: 2;
   display: inline-flex;
   align-items: center;
+  overflow: hidden;
 `;
 
 export const StToggle = styled.button`
@@ -22,6 +25,8 @@ export const StSideBar = styled.section`
   top: 0;
   left: 0;
   border-radius: 0 2rem 2rem 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
 
   & h2 {
     text-align: center;
@@ -52,21 +57,23 @@ export const StListItem = styled.div`
   display: flex;
   gap: 1rem;
   background: #fff;
-  padding: 0.5rem 1rem;
+  padding: 1rem;
   border-radius: 20px;
-  & img {
+  & svg {
     max-width: 100px;
     width: 100%;
     border-radius: 50%;
   }
 `;
+
 export const StItemText = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 0.5rem;
   justify-content: center;
 
   & p {
     font-size: 1.2rem;
+    word-break: keep-all;
   }
 `;
