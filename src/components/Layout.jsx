@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FiSearch } from 'react-icons/fi';
 import mechuliLogo from '../assets/logo/mechuli_logo.png';
-import Kakaomap from './Kakaomap1';
+import Kakaomap from './Kakaomap';
 import {
   StContainer,
   StIconBtn,
@@ -20,11 +20,13 @@ import {
 function Layout() {
   const [searchInput, setSearchInput] = useState('');
   const [Place, setPlace] = useState(''); // 검색한값
+  const [searchBtnToggle, setSearchBtnToggle] = useState(false);
 
   const serchFormOnSubmitHandler = (e) => {
     e.preventDefault();
     setPlace(searchInput);
-    setSearchInput('');
+    setSearchBtnToggle(!searchBtnToggle);
+    // setSearchInput('');
   };
 
   const serchInputOnChangeHandler = (e) => {
@@ -53,7 +55,7 @@ function Layout() {
           </StSearchForm>
         </StLayoutDiv>
         {/*  ----------------이부분은 Header components로 다시 설정.E ------------------ */}
-        <Kakaomap searchPlace={Place} />
+        <Kakaomap searchPlace={Place} searchBtnToggle={searchBtnToggle} />
       </StContainer>
     </>
   );

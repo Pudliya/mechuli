@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { StMap } from '../style/KakaomapStyled';
 
-function Kakaomap({ searchPlace }) {
+function Kakaomap({ searchPlace, searchBtnToggle }) {
   const { kakao } = window;
 
   const mapRef = useRef(null);
@@ -49,7 +49,7 @@ function Kakaomap({ searchPlace }) {
 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, [latlng]);
+  }, [searchBtnToggle]);
 
   // ------useEffect-------
 
@@ -137,7 +137,7 @@ function Kakaomap({ searchPlace }) {
   }, [places]);
 
   useEffect(() => {
-    console.log('latlng : ', latlng[0], latlng[1]);
+    // console.log('latlng : ', latlng[0], latlng[1]);
   }, [latlng]);
 
   return (
