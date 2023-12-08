@@ -60,28 +60,6 @@ export const StContent = styled.div`
   }
 `;
 
-// Toggle
-export const StToggleButton = styled.div`
-  position: absolute;
-  left: 390px;
-  top: 320px;
-  width: 50px;
-  height: 250px;
-  background-color: #fddf62;
-  border-radius: 0 10px 10px 0;
-  scale: 0.6;
-  cursor: pointer;
-  transition: transform 0.3s ease-in-out;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  & img {
-    margin-top: 100px;
-    transition: all 0.2s ease-in-out;
-    &:hover {
-      transform: scale(1.3);
-    }
-  }
-`;
-
 export const StDetailbarCloseButton = styled.div`
   position: absolute;
   margin-left: -480px;

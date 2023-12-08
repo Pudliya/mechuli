@@ -6,13 +6,11 @@ import {
   StTitle,
   StAddress,
   StContent,
-  StToggleButton,
   StDetailbarCloseButton
 } from '../style/StDetailBar';
 import DetailModal from './DetailModal';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import DetailRemoveModa from './DetailRemoveModa';
-import axios from 'axios';
 
 export default function DetailBar() {
   const [isModal, setIsModal] = useState(false);
@@ -28,16 +26,11 @@ export default function DetailBar() {
           setIsOpneDetailBar((isOpenDetailBar) => !isOpenDetailBar);
         }}
       >
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAvklEQVR4nO2VTQqDMBBG30qXhi7b+9gcvQr1Ku0NLIERQvAnjkmLNB+4kfnmZZJJBoqK/k034A7UOzwu1opXDX0DI9ABJsJjJNZ5XsBVA7aSYPr6DbiRGN/TasCVt/ot+Bz0ITlUaiSBn3AALkFMuMBnEJMcng26tpX9wr+YJjxcebZKY+FZoSyc6VzDfQU65oSbXzRXs3JlYu55cuik5PD64JPZaZ9Mm2BIuJF6nrGIGNudW1ZJpWpoUdE59QFWDIMmRvQTIgAAAABJRU5ErkJggg==" />
+        <img
+          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAvklEQVR4nO2VTQqDMBBG30qXhi7b+9gcvQr1Ku0NLIERQvAnjkmLNB+4kfnmZZJJBoqK/k034A7UOzwu1opXDX0DI9ABJsJjJNZ5XsBVA7aSYPr6DbiRGN/TasCVt/ot+Bz0ITlUaiSBn3AALkFMuMBnEJMcng26tpX9wr+YJjxcebZKY+FZoSyc6VzDfQU65oSbXzRXs3JlYu55cuik5PD64JPZaZ9Mm2BIuJF6nrGIGNudW1ZJpWpoUdE59QFWDIMmRvQTIgAAAABJRU5ErkJggg=="
+          alt="사이드바 닫기"
+        />
       </StDetailbarCloseButton>
-
-      <StToggleButton
-        onClick={() =>
-          setIsOpneDetailBar((isOpenDetailBar) => !isOpenDetailBar)
-        }
-      >
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAABP0lEQVR4nO2ZwU7DMAxA3YSuRRzoDul2aJMJVVrL1V+0fxwScNh+inLgEhS2okEjdoLZxU+Kcn6yk9gxgCAIwm+DiKm7u9+EHbiCiGnt2sfKrt8qt35iKYNHiXLh+kQpbxa2r227a5omA5YSSeIBwIedlQweJczSvQwSwzrIuNfatg/ASaKYl15pzUsEv6VTkJjN8pjEjmxqiQQVJBJUkEhQjUSe30SuWOKvN0bKjvGrLRKXOdjjsoNZJIpo2cFMAgC81le8JAKhQh2q2NvCfEmnsExp+8p1z+S7vtp120HkNBLsRPAztVZnrttuTzq1YjJKaZ+m2TRkinBzZdcic3EkMlTB/3lmWtqvfkBkqCKRocokI2NOPrHHPYyj/Yk9qbHCTy0Ai9/4szIfozeGErFhaNjJd5OTH08LggB/yjs9cakIk7pOHwAAAABJRU5ErkJggg==" />{' '}
-      </StToggleButton>
 
       <StContainer className={isOpenDetailBar ? 'active' : ''}>
         <StAvatarFigure>

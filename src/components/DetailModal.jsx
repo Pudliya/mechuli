@@ -14,7 +14,6 @@ import {
 import { StDeleteImage } from '../style/StAddSlider';
 
 function DetailModal({ isModal, setIsModal }) {
-  const [selectedImg, setSelectedImg] = useState();
   const [content, setContent] = useState('');
   const [password, setPassword] = useState('');
   const contentHandler = (e) => {
@@ -70,7 +69,7 @@ function DetailModal({ isModal, setIsModal }) {
           <StCloseModal
             onClick={() => {
               const answer = window.confirm(
-                '작성한 내용이 되지 않습니다. 그래도 나가시겠습니까?'
+                '작성한 내용이 저장되지 않습니다. 그래도 나가시겠습니까?'
               );
               if (!answer) return;
               setShowImages([]);
@@ -79,7 +78,10 @@ function DetailModal({ isModal, setIsModal }) {
               setPassword('');
             }}
           >
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAvklEQVR4nO2VTQqDMBBG30qXhi7b+9gcvQr1Ku0NLIERQvAnjkmLNB+4kfnmZZJJBoqK/k034A7UOzwu1opXDX0DI9ABJsJjJNZ5XsBVA7aSYPr6DbiRGN/TasCVt/ot+Bz0ITlUaiSBn3AALkFMuMBnEJMcng26tpX9wr+YJjxcebZKY+FZoSyc6VzDfQU65oSbXzRXs3JlYu55cuik5PD64JPZaZ9Mm2BIuJF6nrGIGNudW1ZJpWpoUdE59QFWDIMmRvQTIgAAAABJRU5ErkJggg==" />
+            <img
+              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAvklEQVR4nO2VTQqDMBBG30qXhi7b+9gcvQr1Ku0NLIERQvAnjkmLNB+4kfnmZZJJBoqK/k034A7UOzwu1opXDX0DI9ABJsJjJNZ5XsBVA7aSYPr6DbiRGN/TasCVt/ot+Bz0ITlUaiSBn3AALkFMuMBnEJMcng26tpX9wr+YJjxcebZKY+FZoSyc6VzDfQU65oSbXzRXs3JlYu55cuik5PD64JPZaZ9Mm2BIuJF6nrGIGNudW1ZJpWpoUdE59QFWDIMmRvQTIgAAAABJRU5ErkJggg=="
+              alt="닫기"
+            />
           </StCloseModal>
           <StContainer>
             <StModalBox>
@@ -114,7 +116,7 @@ function DetailModal({ isModal, setIsModal }) {
               <StModalContent
                 value={content}
                 onChange={contentHandler}
-                placeholder="리뷰 작성란"
+                placeholder="리뷰 작성해주세요~!"
               ></StModalContent>
               <StButtons
                 onClick={() => {
@@ -123,7 +125,6 @@ function DetailModal({ isModal, setIsModal }) {
                     return false;
                   }
                   onAddPostButtonHandler();
-                  setSelectedImg(null);
                   setContent('');
                   setIsModal(false);
                 }}
