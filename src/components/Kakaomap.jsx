@@ -74,10 +74,14 @@ function Kakaomap({
 
           if (currentLocationToggle === true) {
             if (!searchPlace) return alert('검색어를 입력해주세요!');
+            marker.setMap(null);
+            infowindow.current.close();
             handleCurrentSearch(searchPlace);
             setCurrentLocationToggle(false);
           } else if (entireLocationToggle === true) {
             if (!searchPlace) return alert('검색어를 입력해주세요!');
+            marker.setMap(null);
+            infowindow.current.close();
             handleSearch(searchPlace);
             setEntireLocationToggle(false);
           }
