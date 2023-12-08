@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { StMap } from '../style/KakaomapStyled';
+import { StMap } from '../../style/KakaomapStyled';
 
 function Kakaomap({ searchPlace }) {
   const { kakao } = window;

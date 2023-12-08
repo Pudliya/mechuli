@@ -1,4 +1,4 @@
-const { createSlice } = require('@reduxjs/toolkit');
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   place: null
@@ -9,7 +9,6 @@ const placeSlice = createSlice({
   initialState,
   reducers: {
     setPlace: (state, action) => {
-      console.log('action.payload : ', action.payload);
       state.place = action.payload;
     }
   }

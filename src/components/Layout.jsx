@@ -9,34 +9,34 @@ import Kakaomap from './Kakaomap';
 // 4. 해당 마커의 목록 사이드바에 출력(데이터 전달)
 
 function Layout() {
-  const [searchInput, setSearchInput] = useState('');
   const [searchPlace, setSearchPlace] = useState('');
   const [searchBtnToggle, setSearchBtnToggle] = useState(false);
+  const [entireLocationToggle, setEntireLocationToggle] = useState(false);
+  const [currentLocationToggle, setCurrentLocationToggle] = useState(false);
 
-  const searchFormOnSubmitHandler = (e) => {
-    e.preventDefault();
-    setSearchPlace(searchInput);
-    setSearchBtnToggle(!searchBtnToggle);
-  };
-
-  const searchInputOnChangeHandler = (e) => {
-    setSearchInput(e.target.value);
-  };
-
-  const searchInCurrentArea = () => {
-    setSearchBtnToggle(!searchBtnToggle);
-  };
+  // console.log('searchBtnToggle : ', searchBtnToggle);
+  // console.log('entireLocationToggle : ', entireLocationToggle);
+  // console.log('currentLocationToggle1 : ', currentLocationToggle);
 
   return (
     <>
       <StContainer>
         <Header
-          searchInput={searchInput}
-          onInputChange={searchInputOnChangeHandler}
-          onFormSubmit={searchFormOnSubmitHandler}
-          onSearchInCurrentArea={searchInCurrentArea}
+          setSearchPlace={setSearchPlace}
+          searchBtnToggle={searchBtnToggle}
+          setSearchBtnToggle={setSearchBtnToggle}
+          setEntireLocationToggle={setEntireLocationToggle}
+          setCurrentLocationToggle={setCurrentLocationToggle}
         />
-        <Kakaomap searchPlace={searchPlace} searchBtnToggle={searchBtnToggle} />
+        <Kakaomap
+          searchPlace={searchPlace}
+          searchBtnToggle={searchBtnToggle}
+          setSearchBtnToggle={setSearchBtnToggle}
+          entireLocationToggle={entireLocationToggle}
+          setEntireLocationToggle={setEntireLocationToggle}
+          currentLocationToggle={currentLocationToggle}
+          setCurrentLocationToggle={setCurrentLocationToggle}
+        />
       </StContainer>
     </>
   );

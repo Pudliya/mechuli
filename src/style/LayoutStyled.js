@@ -12,12 +12,15 @@ export const StLayoutDiv = styled.div`
   height: 50px;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   background-color: black;
   padding: 10px;
 `;
 
 export const StLogo = styled.div`
+  position: absolute;
+  left: 5px;
+  top: 5px;
   font-size: 32px;
   font-weight: bold;
   img {
@@ -44,7 +47,6 @@ export const StSearchInput = styled.input`
   height: 30px;
   border-radius: 20px;
   padding: 0 40px 0 15px;
-  position: relative;
 `;
 
 export const StIconBtn = styled.button`
@@ -58,11 +60,15 @@ export const StIconBtn = styled.button`
 `;
 
 export const StSearchCurrentAreaBtn = styled.button`
-  background-color: transparent;
-  border: none;
+  position: absolute;
+  bottom: 5%;
+  background-color: white;
   border-radius: 20px;
-  color: white;
+  color: black;
   font-size: 10px;
   padding: 10px 20px;
+  border: 2px solid blue;
+  z-index: 2;
+
   cursor: pointer;
 `;

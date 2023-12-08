@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FiSearch } from 'react-icons/fi';
 import mechuliLogo from '../assets/logo/mechuli_logo.png';
 import {
@@ -12,13 +12,29 @@ import {
 } from '../style/LayoutStyled';
 
 function Header({
-  searchInput,
-  onInputChange,
-  onFormSubmit,
-  onSearchInCurrentArea // '현재 지역에서 검색하기' 버튼을 처리하기 위한 새로운 prop
+  setSearchPlace,
+  searchBtnToggle,
+  setSearchBtnToggle,
+  setEntireLocationToggle,
+  setCurrentLocationToggle
 }) {
-  const handleSearchInCurrentArea = () => {
-    onSearchInCurrentArea();
+  const [searchInput, setSearchInput] = useState('');
+
+  const searchInputOnChangeHandler = (e) => {
+    setSearchInput(e.target.value);
+  };
+
+  const searchFormOnSubmitHandler = (e) => {
+    e.preventDefault();
+    setSearchPlace(searchInput);
+    setSearchBtnToggle(!searchBtnToggle);
+    setEntireLocationToggle(true);
+  };
+
+  const searchInCurrentArea = () => {
+    setSearchPlace(searchInput);
+    setSearchBtnToggle(!searchBtnToggle);
+    setCurrentLocationToggle(true);
   };
 
   return (
@@ -26,11 +42,11 @@ function Header({
       <StLogo>
         <img src={mechuliLogo} alt="Mechuli 로고" />
       </StLogo>
-      <StSearchForm onSubmit={onFormSubmit}>
+      <StSearchForm onSubmit={searchFormOnSubmitHandler}>
         <StSearchInputContainer>
           <StSearchInput
             value={searchInput}
-            onChange={onInputChange}
+            onChange={searchInputOnChangeHandler}
             placeholder="지역 + 메뉴"
           />
           <StIconBtn type="submit">
@@ -39,7 +55,7 @@ function Header({
         </StSearchInputContainer>
       </StSearchForm>
       {/* '현재 지역에서 검색하기' 버튼 추가 */}
-      <StSearchCurrentAreaBtn onClick={handleSearchInCurrentArea}>
+      <StSearchCurrentAreaBtn type="button" onClick={searchInCurrentArea}>
         현재 지역에서 검색하기
       </StSearchCurrentAreaBtn>
     </StLayoutDiv>
