@@ -9,12 +9,14 @@ export const StContainer = styled.div`
 
 export const StLayoutDiv = styled.div`
   width: 100%;
-  height: 50px;
+  height: 5vh;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: black;
   padding: 10px;
+  z-index: 2;
+  position: fixed;
 `;
 
 export const StLogo = styled.div`
@@ -60,14 +62,17 @@ export const StIconBtn = styled.button`
 `;
 
 export const StSearchCurrentAreaBtn = styled.button`
-  position: absolute;
+  position: fixed;
   bottom: 5%;
+  left: 50%;
   background-color: white;
   border-radius: 20px;
   color: black;
-  font-size: 10px;
+  font-size: 1rem;
   padding: 10px 20px;
-  border: 2px solid blue;
+  border: 2px solid #fddf62;
+  box-shadow: 0px 0px 28px rgba(0, 0, 0, 0.25),
+    0px 3px 20px 7px rgba(0, 0, 0, 0.22);
   z-index: 2;
 
   cursor: pointer;

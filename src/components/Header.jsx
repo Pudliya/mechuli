@@ -38,27 +38,29 @@ function Header({
   };
 
   return (
-    <StLayoutDiv>
-      <StLogo>
-        <img src={mechuliLogo} alt="Mechuli 로고" />
-      </StLogo>
-      <StSearchForm onSubmit={searchFormOnSubmitHandler}>
-        <StSearchInputContainer>
-          <StSearchInput
-            value={searchInput}
-            onChange={searchInputOnChangeHandler}
-            placeholder="지역 + 메뉴 (최대 15개 검색 가능!)"
-          />
-          <StIconBtn type="submit">
-            <FiSearch />
-          </StIconBtn>
-        </StSearchInputContainer>
-      </StSearchForm>
+    <>
+      <StLayoutDiv>
+        <StLogo>
+          <img src={mechuliLogo} alt="Mechuli 로고" />
+        </StLogo>
+        <StSearchForm onSubmit={searchFormOnSubmitHandler}>
+          <StSearchInputContainer>
+            <StSearchInput
+              value={searchInput}
+              onChange={searchInputOnChangeHandler}
+              placeholder="지역 + 메뉴 (최대 15개 검색 가능!)"
+            />
+            <StIconBtn type="submit">
+              <FiSearch />
+            </StIconBtn>
+          </StSearchInputContainer>
+        </StSearchForm>
+      </StLayoutDiv>
       {/* '현재 지역에서 검색하기' 버튼 추가 */}
       <StSearchCurrentAreaBtn type="button" onClick={searchInCurrentArea}>
         현재 지역에서 검색하기
       </StSearchCurrentAreaBtn>
-    </StLayoutDiv>
+    </>
   );
 }
 
