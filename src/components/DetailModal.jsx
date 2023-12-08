@@ -66,24 +66,25 @@ function DetailModal({ isModal, setIsModal }) {
     <>
       {isModal ? (
         <>
-          <StCloseModal
-            onClick={() => {
-              const answer = window.confirm(
-                '작성한 내용이 저장되지 않습니다. 그래도 나가시겠습니까?'
-              );
-              if (!answer) return;
-              setShowImages([]);
-              setContent('');
-              setIsModal(false);
-              setPassword('');
-            }}
-          >
-            <img
-              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAvklEQVR4nO2VTQqDMBBG30qXhi7b+9gcvQr1Ku0NLIERQvAnjkmLNB+4kfnmZZJJBoqK/k034A7UOzwu1opXDX0DI9ABJsJjJNZ5XsBVA7aSYPr6DbiRGN/TasCVt/ot+Bz0ITlUaiSBn3AALkFMuMBnEJMcng26tpX9wr+YJjxcebZKY+FZoSyc6VzDfQU65oSbXzRXs3JlYu55cuik5PD64JPZaZ9Mm2BIuJF6nrGIGNudW1ZJpWpoUdE59QFWDIMmRvQTIgAAAABJRU5ErkJggg=="
-              alt="닫기"
-            />
-          </StCloseModal>
           <StContainer>
+            <StCloseModal
+              onClick={() => {
+                const answer = window.confirm(
+                  '작성한 내용이 저장되지 않습니다. 그래도 나가시겠습니까?'
+                );
+                if (!answer) return;
+                setShowImages([]);
+                setContent('');
+                setIsModal(false);
+                setPassword('');
+              }}
+            >
+              <img
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAvklEQVR4nO2VTQqDMBBG30qXhi7b+9gcvQr1Ku0NLIERQvAnjkmLNB+4kfnmZZJJBoqK/k034A7UOzwu1opXDX0DI9ABJsJjJNZ5XsBVA7aSYPr6DbiRGN/TasCVt/ot+Bz0ITlUaiSBn3AALkFMuMBnEJMcng26tpX9wr+YJjxcebZKY+FZoSyc6VzDfQU65oSbXzRXs3JlYu55cuik5PD64JPZaZ9Mm2BIuJF6nrGIGNudW1ZJpWpoUdE59QFWDIMmRvQTIgAAAABJRU5ErkJggg=="
+                alt="닫기"
+              />
+            </StCloseModal>
+
             <StModalBox>
               <StImgFigure>
                 {showImages.map((image, id) => (

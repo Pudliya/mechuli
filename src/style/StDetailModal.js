@@ -2,11 +2,12 @@ import styled from 'styled-components';
 
 export const StContainer = styled.div`
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
   width: 100%;
   height: 100%;
-  top: 0;
-  left: 0;
-  z-index: 3;
+  z-index: 5;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,9 +25,9 @@ export const StContainer = styled.div`
 `;
 
 export const StModalBox = styled.div`
+  background-color: blanchedalmond;
   width: 550px;
   height: 650px;
-  margin-left: 15px;
   border: 5px solid #fddf62;
   display: flex;
   flex-direction: column;
@@ -56,7 +57,7 @@ export const StModalContent = styled.textarea`
   resize: none;
   padding: 10px;
   outline: none;
-  border: 3px solid blanchedalmond;
+  border: 3px solid #fdd5a5;
   border-radius: 10px;
 `;
 
@@ -67,7 +68,7 @@ export const StButtons = styled.button`
   padding: 10px 20px;
   border: 0;
   border-radius: 10px;
-  background-color: blanchedalmond;
+  background-color: #fdd5a5;
   transition: all 0.2s ease-in-out;
   font-weight: 700;
   color: brown;
@@ -96,8 +97,7 @@ export const StImgButton = styled.div`
 export const StCloseModal = styled.div`
   position: absolute;
   border-radius: 10px 10px 0 0;
-  left: 760px;
-  top: 100px;
+  top: 535px;
   width: 200px;
   height: 30px;
   z-index: 4;
@@ -125,7 +125,7 @@ export const StCloseModal = styled.div`
 `;
 
 export const StInputPassword = styled.input`
-  border: 3px solid blanchedalmond;
+  border: 3px solid #fdd5a5;
   padding: 5px 8px;
   outline: 0;
   border-radius: 20px;
