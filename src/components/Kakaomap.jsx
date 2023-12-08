@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setPlace } from '../redux/slices/placeSlice';
 import defaultMarker from '../assets/marker/defaultMarker.png';
 import styled from 'styled-components';
+import { setmarkerId } from '../redux/slices/markerSlice';
 
 function Kakaomap({
   searchPlace,
@@ -19,6 +20,7 @@ function Kakaomap({
 
   const dispatch = useDispatch();
   const place = useSelector((state) => state.place.place);
+  // const markerId = useSelector((state) => state.marker.markerId);
 
   const mapRef = useRef(null);
   const infowindow = useRef(new kakao.maps.InfoWindow({ zIndex: 1 }));
@@ -175,7 +177,6 @@ function Kakaomap({
   };
 
   const displayMarker = (place) => {
-    console.log('place : ', place);
     let marker = new kakao.maps.Marker({
       map: mapRef.current,
       position: new kakao.maps.LatLng(place.y, place.x)
@@ -233,6 +234,7 @@ function Kakaomap({
     customOverlay.setMap(null);
 
     kakao.maps.event.addListener(marker, 'click', function () {
+      dispatch(setmarkerId(place.id));
       customOverlay.setMap(mapRef.current);
       setIsOpneDetailBar((isOpenDetailBar) => !isOpenDetailBar);
 
