@@ -1,14 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { StMap } from '../style/KakaomapStyled';
+import { useDispatch, useSelector } from 'react-redux';
+import { setPlace } from '../redux/slices/placeSlice';
 
 function Kakaomap({ searchPlace, searchBtnToggle }) {
   const { kakao } = window;
+
+  const dispatch = useDispatch();
+  const place = useSelector((state) => state.place);
 
   const mapRef = useRef(null);
   const infowindow = useRef(new kakao.maps.InfoWindow({ zIndex: 1 }));
   const ps = new kakao.maps.services.Places(mapRef.current);
 
-  const [places, setPlaces] = useState([]); // placesSearch data
+  // const [places, setPlaces] = useState([]); // placesSearch data
   const [latlng, setLatlng] = useState([37.566826, 126.9786567]); //위도 lat , 경도 lng
 
   // ------useEffect-------
@@ -89,6 +94,7 @@ function Kakaomap({ searchPlace, searchBtnToggle }) {
         bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
         newPlaces.push({
           id: data[i].id,
+          category_name: data[i].category_name,
           place_name: data[i].place_name,
           address_name: data[i].address_name,
           road_address_name: data[i].road_address_name,
@@ -97,7 +103,9 @@ function Kakaomap({ searchPlace, searchBtnToggle }) {
           place_url: data[i].place_url
         });
       }
-      setPlaces(newPlaces);
+
+      dispatch(setPlace(newPlaces));
+
       mapRef.current.setBounds(bounds);
       mapRef.current.setLevel(5, {
         animate: {
@@ -133,8 +141,8 @@ function Kakaomap({ searchPlace, searchBtnToggle }) {
 
   // places 데이터 확인
   useEffect(() => {
-    console.log('places : ', places);
-  }, [places]);
+    console.log('place : ', place);
+  }, [place]);
 
   useEffect(() => {
     // console.log('latlng : ', latlng[0], latlng[1]);
