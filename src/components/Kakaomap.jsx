@@ -6,7 +6,6 @@ import { setPlace } from '../redux/slices/placeSlice';
 function Kakaomap({
   searchPlace,
   searchBtnToggle,
-  setSearchBtnToggle,
   entireLocationToggle,
   setEntireLocationToggle,
   currentLocationToggle,
@@ -18,6 +17,7 @@ function Kakaomap({
   const place = useSelector((state) => state.place.place);
 
   const mapRef = useRef(null);
+  const boundRef = useRef(undefined);
   const infowindow = useRef(new kakao.maps.InfoWindow({ zIndex: 1 }));
   const ps = new kakao.maps.services.Places(mapRef.current);
 
@@ -106,9 +106,8 @@ function Kakaomap({
   };
 
   // 여기에 data 배열 추출!
-  const placesSearchCB = (data, status) => {
-    // console.log('data : ', data);
 
+  const placesSearchCB = (data, status) => {
     if (status === kakao.maps.services.Status.OK) {
       let bounds = new kakao.maps.LatLngBounds();
       const newPlaces = [];
@@ -116,7 +115,7 @@ function Kakaomap({
       for (let i = 0; i < data.length; i++) {
         displayMarker(data[i]);
         bounds.extend(new kakao.maps.LatLng(data[0].y, data[0].x));
-        console.log('bounds : ', bounds);
+        console.log(bounds);
         newPlaces.push({
           id: data[i].id,
           category_name: data[i].category_name,
@@ -144,6 +143,11 @@ function Kakaomap({
     }
   };
 
+  // useEffect(() => {
+  //   let bounds = new kakao.maps.LatLngBounds();
+  //   mapRef.current.setBounds(boundRef.current);
+  // }, [mapRef.current]);
+
   const displayMarker = (place) => {
     let marker = new kakao.maps.Marker({
       map: mapRef.current,
@@ -158,6 +162,11 @@ function Kakaomap({
           place.address_name +
           '</div>'
       );
+
+      kakao.maps.event.addListener(mapRef.current, 'click', function () {
+        infowindow.current.close();
+      });
+
       infowindow.current.open(mapRef.current, marker);
     });
   };

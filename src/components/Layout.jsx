@@ -31,7 +31,6 @@ function Layout() {
         <Kakaomap
           searchPlace={searchPlace}
           searchBtnToggle={searchBtnToggle}
-          setSearchBtnToggle={setSearchBtnToggle}
           entireLocationToggle={entireLocationToggle}
           setEntireLocationToggle={setEntireLocationToggle}
           currentLocationToggle={currentLocationToggle}
