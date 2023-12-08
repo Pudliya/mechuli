@@ -56,3 +56,13 @@ export const StIconBtn = styled.button`
   cursor: pointer;
   position: absolute;
 `;
+
+export const StSearchCurrentAreaBtn = styled.button`
+  background-color: transparent;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  font-size: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+`;

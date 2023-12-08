@@ -5,12 +5,22 @@ import {
   StIconBtn,
   StLayoutDiv,
   StLogo,
+  StSearchCurrentAreaBtn,
   StSearchForm,
   StSearchInput,
   StSearchInputContainer
 } from '../style/LayoutStyled';
 
-const Header = ({ searchInput, onInputChange, onFormSubmit }) => {
+function Header({
+  searchInput,
+  onInputChange,
+  onFormSubmit,
+  onSearchInCurrentArea // '현재 지역에서 검색하기' 버튼을 처리하기 위한 새로운 prop
+}) {
+  const handleSearchInCurrentArea = () => {
+    onSearchInCurrentArea();
+  };
+
   return (
     <StLayoutDiv>
       <StLogo>
@@ -28,8 +38,12 @@ const Header = ({ searchInput, onInputChange, onFormSubmit }) => {
           </StIconBtn>
         </StSearchInputContainer>
       </StSearchForm>
+      {/* '현재 지역에서 검색하기' 버튼 추가 */}
+      <StSearchCurrentAreaBtn onClick={handleSearchInCurrentArea}>
+        현재 지역에서 검색하기
+      </StSearchCurrentAreaBtn>
     </StLayoutDiv>
   );
-};
+}
 
 export default Header;

@@ -10,18 +10,21 @@ import Kakaomap from './Kakaomap';
 
 function Layout() {
   const [searchInput, setSearchInput] = useState('');
-  const [Place, setPlace] = useState(''); // 검색한값
+  const [searchPlace, setSearchPlace] = useState('');
   const [searchBtnToggle, setSearchBtnToggle] = useState(false);
 
-  const serchFormOnSubmitHandler = (e) => {
+  const searchFormOnSubmitHandler = (e) => {
     e.preventDefault();
-    setPlace(searchInput);
+    setSearchPlace(searchInput);
     setSearchBtnToggle(!searchBtnToggle);
-    // setSearchInput('');
   };
 
-  const serchInputOnChangeHandler = (e) => {
+  const searchInputOnChangeHandler = (e) => {
     setSearchInput(e.target.value);
+  };
+
+  const searchInCurrentArea = () => {
+    setSearchBtnToggle(!searchBtnToggle);
   };
 
   return (
@@ -29,10 +32,11 @@ function Layout() {
       <StContainer>
         <Header
           searchInput={searchInput}
-          onInputChange={serchInputOnChangeHandler}
-          onFormSubmit={serchFormOnSubmitHandler}
+          onInputChange={searchInputOnChangeHandler}
+          onFormSubmit={searchFormOnSubmitHandler}
+          onSearchInCurrentArea={searchInCurrentArea}
         />
-        <Kakaomap searchPlace={Place} searchBtnToggle={searchBtnToggle} />
+        <Kakaomap searchPlace={searchPlace} searchBtnToggle={searchBtnToggle} />
       </StContainer>
     </>
   );
