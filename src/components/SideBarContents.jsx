@@ -7,11 +7,8 @@ import KoreanFood from '../assets/logo/icon/KoreanFood';
 import DefaultIcon from '../assets/logo/icon/DefaultIcon';
 import JapaneseFood from '../assets/logo/icon/JapaneseFood';
 import WesternFood from '../assets/logo/icon/WesternFood';
-import { QueryClient, QueryClientProvider } from 'react-query';
-import DetailBar from './DetailBar';
 
 export default function SideBarContents() {
-  const queryClient = new QueryClient();
   return (
     <>
       <StSideBar>
@@ -25,9 +22,6 @@ export default function SideBarContents() {
         <WesternFood />
         <JapaneseFood />
       </StSideBar>
-      <QueryClientProvider client={queryClient}>
-        <DetailBar />
-      </QueryClientProvider>
     </>
   );
 }

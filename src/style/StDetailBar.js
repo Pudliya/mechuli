@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
 export const StContainer = styled.div`
+  position: absolute;
+  top: 51px;
+  left: 0;
+  z-index: 3;
   margin-left: -400px;
   width: 400px;
   height: 100vh;
@@ -37,7 +41,7 @@ export const StTitle = styled.div`
   border-radius: 15px;
   padding-bottom: 5px;
 `;
-export const StAddress = styled.div`
+export const StInfo = styled.div`
   width: 300px;
   font-size: 15px;
   margin-bottom: 10px;
@@ -47,24 +51,13 @@ export const StAddress = styled.div`
   padding-bottom: 5px;
   text-align: center;
 `;
-export const StContent = styled.div`
-  font-size: 16px;
-  width: 300px;
-  margin-bottom: 20px;
-  line-height: 23px;
-  border-bottom: 5px solid blanchedalmond;
-  border-radius: 10px;
-  & p {
-    margin-bottom: 5px;
-    text-align: center;
-  }
-`;
 
 export const StDetailbarCloseButton = styled.div`
   position: absolute;
+  z-index: 3;
   margin-left: -480px;
   left: 385px;
-  top: 15px;
+  top: 60px;
   width: 80px;
   height: 80px;
   background-color: #fddf62;

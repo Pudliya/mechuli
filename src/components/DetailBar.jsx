@@ -5,17 +5,16 @@ import {
   StAvatarFigure,
   StTitle,
   StAddress,
-  StContent,
-  StDetailbarCloseButton
+  StDetailbarCloseButton,
+  StInfo
 } from '../style/StDetailBar';
 import DetailModal from './DetailModal';
 import { useState } from 'react';
 import DetailRemoveModa from './DetailRemoveModa';
 
-export default function DetailBar() {
+export default function DetailBar({ isOpenDetailBar, setIsOpneDetailBar }) {
   const [isModal, setIsModal] = useState(false);
   const [isRemoveModal, setIsRemoveModal] = useState(false);
-  const [isOpenDetailBar, setIsOpneDetailBar] = useState(false);
   const [foundTarget, setFoundTarget] = useState('');
 
   return (
@@ -37,14 +36,8 @@ export default function DetailBar() {
           <img src={foodjpg} alt="맛집 사진" />
         </StAvatarFigure>
         <StTitle>스미카츠</StTitle>
-        <StAddress>서울 강남구 선릉로157길 23-3 지상 1층 101호</StAddress>
-        <StContent>
-          <p>
-            카츠에 대해서 만큼은 단언컨데 최고라 자부하는 숯불 훈연 카츠,카츠동
-            전문점 제주산 암퇘지 선별육 등심,안심,1++등급과 꽃목살 정중앙만
-            사용하는 스미 카츠입니다
-          </p>
-        </StContent>
+        <StInfo>서울 강남구 선릉로157길 23-3 지상 1층 101호</StInfo>
+
         <AddReview
           setIsModal={setIsModal}
           setIsRemoveModal={setIsRemoveModal}

@@ -11,7 +11,9 @@ function Kakaomap({
   entireLocationToggle,
   setEntireLocationToggle,
   currentLocationToggle,
-  setCurrentLocationToggle
+  setCurrentLocationToggle,
+  setIsOpneDetailBar,
+  isOpenDetailBar
 }) {
   const { kakao } = window;
 
@@ -179,15 +181,7 @@ function Kakaomap({
       position: new kakao.maps.LatLng(place.y, place.x)
     });
 
-    let content =
-      '<div class="placeinfo">' +
-      '   <a class="title" href="' +
-      place.place_url +
-      '" target="_blank" title="' +
-      place.place_name +
-      '">' +
-      place.place_name +
-      '</a>';
+    let content = ` <div  class="placeinfo">   <a class="title" href="${place.place_url}" target="_blank" title="${place.place_name}">${place.place_name}</a>`;
 
     if (place.road_address_name) {
       content +=
@@ -230,6 +224,7 @@ function Kakaomap({
 
     kakao.maps.event.addListener(marker, 'click', function () {
       customOverlay.setMap(mapRef.current);
+      setIsOpneDetailBar((isOpenDetailBar) => !isOpenDetailBar);
 
       kakao.maps.event.addListener(mapRef.current, 'click', function () {
         customOverlay.setMap(null);
