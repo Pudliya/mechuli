@@ -8,7 +8,12 @@ import {
 } from '../style/StDetailBar';
 import { getPosts } from '../api/posts';
 import { useQuery } from 'react-query';
-export default function AddReview({ setIsModal, setIsRemoveModal }) {
+import SlideModal from './SlideModal';
+export default function AddReview({
+  setIsModal,
+  setIsRemoveModal,
+  setFoundTarget
+}) {
   // posts 조회
   const { isLoading, isError, data } = useQuery('posts', getPosts);
 
@@ -45,11 +50,13 @@ export default function AddReview({ setIsModal, setIsRemoveModal }) {
         return (
           <>
             <StCard key={item.id}>
-              {item.img === null ? (
-                <StCardContent>{item.content}</StCardContent>
+              {item.img == '' ? (
+                <>
+                  <StCardContent>{item.content}</StCardContent>
+                </>
               ) : (
                 <>
-                  <img src={item.img} />
+                  <SlideModal imgurl={item.img} />
                   <StCardContent>{item.content}</StCardContent>
                 </>
               )}
@@ -57,6 +64,7 @@ export default function AddReview({ setIsModal, setIsRemoveModal }) {
             <StReviewDeleteButton
               onClick={() => {
                 setIsRemoveModal(true);
+                setFoundTarget(item.id);
               }}
             >
               삭제

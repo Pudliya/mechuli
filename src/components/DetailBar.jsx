@@ -18,26 +18,7 @@ export default function DetailBar() {
   const [isModal, setIsModal] = useState(false);
   const [isRemoveModal, setIsRemoveModal] = useState(false);
   const [isOpenDetailBar, setIsOpneDetailBar] = useState(false);
-
-  const [fonudData, setFoundData] = useState('');
-
-  const kakaofetchData = async () => {
-    const searching = '이태원 맛집';
-    const { data } = await axios.get(
-      `https://dapi.kakao.com/v2/local/search/keyword.json?query=${searching}`,
-      {
-        headers: {
-          Authorization: 'KakaoAK f700a94a8b535d4fe5e70407a5482308'
-        }
-      }
-    );
-
-    setFoundData(data?.documents[0]);
-  };
-
-  useEffect(() => {
-    kakaofetchData();
-  }, []);
+  const [foundTarget, setFoundTarget] = useState('');
 
   return (
     <>
@@ -62,19 +43,25 @@ export default function DetailBar() {
         <StAvatarFigure>
           <img src={foodjpg} alt="맛집 사진" />
         </StAvatarFigure>
-        <StTitle>{fonudData.place_name}</StTitle>
-        <StAddress>{fonudData.address_name}</StAddress>
+        <StTitle>스미카츠</StTitle>
+        <StAddress>서울 강남구 선릉로157길 23-3 지상 1층 101호</StAddress>
         <StContent>
-          <p>{fonudData.phone}</p>
+          <p>
+            카츠에 대해서 만큼은 단언컨데 최고라 자부하는 숯불 훈연 카츠,카츠동
+            전문점 제주산 암퇘지 선별육 등심,안심,1++등급과 꽃목살 정중앙만
+            사용하는 스미 카츠입니다
+          </p>
         </StContent>
         <AddReview
           setIsModal={setIsModal}
           setIsRemoveModal={setIsRemoveModal}
+          setFoundTarget={setFoundTarget}
         />
         <DetailModal isModal={isModal} setIsModal={setIsModal} />
         <DetailRemoveModa
           isRemoveModal={isRemoveModal}
           setIsRemoveModal={setIsRemoveModal}
+          foundTarget={foundTarget}
         />
       </StContainer>
     </>

@@ -3,7 +3,11 @@ import { useMutation, useQuery, useQueryClient } from 'react-query';
 import styled from 'styled-components';
 import { getPosts, removePost } from '../api/posts';
 
-export default function DetailRemoveModa({ isRemoveModal, setIsRemoveModal }) {
+export default function DetailRemoveModa({
+  isRemoveModal,
+  setIsRemoveModal,
+  foundTarget
+}) {
   const [password, setIspassword] = useState('');
   const { data } = useQuery('posts', getPosts);
 
@@ -23,50 +27,52 @@ export default function DetailRemoveModa({ isRemoveModal, setIsRemoveModal }) {
 
   return (
     <>
-      {data?.map((item) => {
-        return (
-          <>
-            {isRemoveModal ? (
-              <>
-                <StContainer>
-                  <StModalBox>
-                    비밀번호
-                    <input
-                      value={password}
-                      onChange={(e) => {
-                        setIspassword(e.target.value);
-                      }}
-                      type="password"
-                    />
-                    <StButtons>
-                      <button
-                        onClick={() => {
-                          if (password === item.password) {
-                            onDeleteButtonHandler(item.id);
-                          } else {
-                            alert('비밀번호가 일치하지 않습니다.');
-                          }
-                          setIspassword('');
-                          setIsRemoveModal(false);
+      {data
+        ?.filter((item) => item.id === foundTarget)
+        ?.map((item) => {
+          return (
+            <>
+              {isRemoveModal ? (
+                <>
+                  <StContainer>
+                    <StModalBox>
+                      비밀번호
+                      <input
+                        value={password}
+                        onChange={(e) => {
+                          setIspassword(e.target.value);
                         }}
-                      >
-                        삭제
-                      </button>
-                      <button
-                        onClick={() => {
-                          setIsRemoveModal(false);
-                        }}
-                      >
-                        취소
-                      </button>
-                    </StButtons>
-                  </StModalBox>
-                </StContainer>
-              </>
-            ) : null}
-          </>
-        );
-      })}
+                        type="password"
+                      />
+                      <StButtons>
+                        <button
+                          onClick={() => {
+                            if (password === item.password) {
+                              onDeleteButtonHandler(item.id);
+                            } else {
+                              alert('비밀번호가 일치하지 않습니다.');
+                            }
+                            setIspassword('');
+                            setIsRemoveModal(false);
+                          }}
+                        >
+                          삭제
+                        </button>
+                        <button
+                          onClick={() => {
+                            setIsRemoveModal(false);
+                          }}
+                        >
+                          취소
+                        </button>
+                      </StButtons>
+                    </StModalBox>
+                  </StContainer>
+                </>
+              ) : null}
+            </>
+          );
+        })}
     </>
   );
 }

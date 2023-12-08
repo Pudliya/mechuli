@@ -24,7 +24,7 @@ export const StContainer = styled.div`
 `;
 
 export const StModalBox = styled.div`
-  width: 500px;
+  width: 550px;
   height: 650px;
   margin-left: 15px;
   border: 5px solid #fddf62;
@@ -38,11 +38,13 @@ export const StModalBox = styled.div`
 
 export const StImgFigure = styled.div`
   margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
 
   & img {
-    width: 250px;
-    overflow: hidden;
-    object-fit: cover;
+    width: 150px;
+    height: 150px;
+    margin-right: 10px;
     border-radius: 10px;
   }
 `;

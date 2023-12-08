@@ -11,14 +11,36 @@ import {
   StModalContent,
   StButtons
 } from '../style/StDetailModal';
+import { StDeleteImage } from '../style/StAddSlider';
 
 function DetailModal({ isModal, setIsModal }) {
   const [selectedImg, setSelectedImg] = useState();
-  const [file, setFile] = useState(null);
   const [content, setContent] = useState('');
   const [password, setPassword] = useState('');
   const contentHandler = (e) => {
     setContent(e.target.value);
+  };
+
+  const [showImages, setShowImages] = useState([]);
+
+  // 이미지 상대경로 저장
+  const handleAddImages = (event) => {
+    const imageLists = event.target.files;
+    let imageUrlLists = [...showImages];
+
+    for (let i = 0; i < imageLists.length; i++) {
+      const currentImageUrl = URL.createObjectURL(imageLists[i]);
+      imageUrlLists.push(currentImageUrl);
+    }
+
+    if (imageUrlLists.length > 3) {
+      imageUrlLists = imageUrlLists.slice(0, 3);
+    }
+    setShowImages(imageUrlLists);
+  };
+
+  const handleDeleteImage = (id) => {
+    setShowImages(showImages.filter((_, index) => index !== id));
   };
 
   const queryClient = useQueryClient();
@@ -28,25 +50,15 @@ function DetailModal({ isModal, setIsModal }) {
     }
   });
 
-  const previewImg = (event) => {
-    const imgFile = event.target.files[0];
-    setFile(imgFile);
-    if (imgFile) {
-      const imgUrl = URL.createObjectURL(imgFile);
-      setSelectedImg(imgUrl);
-    } else {
-      return;
-    }
-  };
-
   //post 추가
   const onAddPostButtonHandler = () => {
     const newPost = {
       content,
-      img: selectedImg,
+      img: showImages,
       password
     };
     mutation.mutate(newPost);
+    setShowImages([]);
     setContent('');
     setPassword('');
   };
@@ -61,9 +73,10 @@ function DetailModal({ isModal, setIsModal }) {
                 '작성한 내용이 되지 않습니다. 그래도 나가시겠습니까?'
               );
               if (!answer) return;
-              setSelectedImg(null);
+              setShowImages([]);
               setContent('');
               setIsModal(false);
+              setPassword('');
             }}
           >
             <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAvklEQVR4nO2VTQqDMBBG30qXhi7b+9gcvQr1Ku0NLIERQvAnjkmLNB+4kfnmZZJJBoqK/k034A7UOzwu1opXDX0DI9ABJsJjJNZ5XsBVA7aSYPr6DbiRGN/TasCVt/ot+Bz0ITlUaiSBn3AALkFMuMBnEJMcng26tpX9wr+YJjxcebZKY+FZoSyc6VzDfQU65oSbXzRXs3JlYu55cuik5PD64JPZaZ9Mm2BIuJF6nrGIGNudW1ZJpWpoUdE59QFWDIMmRvQTIgAAAABJRU5ErkJggg==" />
@@ -71,16 +84,23 @@ function DetailModal({ isModal, setIsModal }) {
           <StContainer>
             <StModalBox>
               <StImgFigure>
-                <img src={selectedImg} />
+                {showImages.map((image, id) => (
+                  <div key={id}>
+                    <img src={image} alt={`${image}-${id}`} />
+                    <StDeleteImage onClick={() => handleDeleteImage(id)}>
+                      <p>X</p>
+                    </StDeleteImage>
+                  </div>
+                ))}
               </StImgFigure>
               <StImgButton>
                 <label>
                   <input
                     type="file"
-                    onChange={previewImg}
+                    onChange={handleAddImages}
                     accept="image/jpg, image/png"
                   />
-                  <p>이미지 선택</p>
+                  <p>이미지 업로드</p>
                 </label>
               </StImgButton>
               <StInputPassword

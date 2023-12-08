@@ -94,14 +94,16 @@ export const StDetailbarCloseButton = styled.div`
   scale: 0.6;
   cursor: pointer;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  &:hover {
+    & img {
+      transform: scale(1.3);
+    }
+  }
   & img {
     margin-top: 25px;
     margin-left: 23px;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.1s ease-in-out;
     scale: 1.5;
-    &:hover {
-      transform: scale(1.3);
-    }
   }
   transition: all 0.4s ease-in-out;
   &.close {
