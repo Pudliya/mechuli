@@ -29,7 +29,7 @@ function Kakaomap({
     const container = document.getElementById('myMap');
     const options = {
       center: new kakao.maps.LatLng(latlng[0], latlng[1]),
-      level: 6
+      level: 7
     };
     const initialMap = new kakao.maps.Map(container, options);
     mapRef.current = initialMap;
@@ -47,6 +47,30 @@ function Kakaomap({
           const { latitude, longitude } = position.coords;
           const userLatLng = new kakao.maps.LatLng(latitude, longitude);
           initialMap.setCenter(userLatLng);
+
+          let marker = new kakao.maps.Marker({
+            map: mapRef.current,
+            position: new kakao.maps.LatLng(latitude, longitude)
+          });
+
+          infowindow.current.open(mapRef.current, marker);
+
+          infowindow.current.setContent(
+            '<div style="font-size:12px; padding:5px">' +
+              '현재 여기 근처에 계시네요!'
+          );
+          kakao.maps.event.addListener(marker, 'mouseover', function () {
+            infowindow.current.open(mapRef.current, marker);
+          });
+
+          kakao.maps.event.addListener(marker, 'mouseout', function () {
+            infowindow.current.close();
+          });
+
+          kakao.maps.event.addListener(mapRef.current, 'drag', function () {
+            infowindow.current.close();
+            marker.setMap(null);
+          });
 
           if (currentLocationToggle === true) {
             if (!searchPlace) return alert('검색어를 입력해주세요!');
@@ -114,7 +138,7 @@ function Kakaomap({
 
       for (let i = 0; i < data.length; i++) {
         displayMarker(data[i]);
-        bounds.extend(new kakao.maps.LatLng(data[0].y, data[0].x));
+        bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
         console.log(bounds);
         newPlaces.push({
           id: data[i].id,
@@ -127,15 +151,8 @@ function Kakaomap({
           place_url: data[i].place_url
         });
       }
-
       dispatch(setPlace(newPlaces));
-
       mapRef.current.setBounds(bounds);
-      mapRef.current.setLevel(6, {
-        animate: {
-          duration: 0
-        }
-      });
     } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
       alert('검색 결과가 존재하지 않습니다.');
     } else if (status === kakao.maps.services.Status.ERROR) {
