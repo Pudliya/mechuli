@@ -115,7 +115,8 @@ function Kakaomap({
 
       for (let i = 0; i < data.length; i++) {
         displayMarker(data[i]);
-        bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
+        bounds.extend(new kakao.maps.LatLng(data[0].y, data[0].x));
+        console.log('bounds : ', bounds);
         newPlaces.push({
           id: data[i].id,
           category_name: data[i].category_name,
@@ -131,7 +132,7 @@ function Kakaomap({
       dispatch(setPlace(newPlaces));
 
       mapRef.current.setBounds(bounds);
-      mapRef.current.setLevel(5, {
+      mapRef.current.setLevel(6, {
         animate: {
           duration: 0
         }
