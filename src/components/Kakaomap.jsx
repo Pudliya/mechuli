@@ -238,7 +238,6 @@ export default Kakaomap;
 const StContainer = styled.div`
   width: 100%;
   height: 100%;
-  border: 2px solid blue;
 
   #myMap {
     width: 100%;
