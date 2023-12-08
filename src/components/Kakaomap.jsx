@@ -11,7 +11,9 @@ function Kakaomap({
   entireLocationToggle,
   setEntireLocationToggle,
   currentLocationToggle,
-  setCurrentLocationToggle
+  setCurrentLocationToggle,
+  setIsOpneDetailBar,
+  isOpenDetailBar
 }) {
   const { kakao } = window;
 
@@ -232,6 +234,7 @@ function Kakaomap({
 
     kakao.maps.event.addListener(marker, 'click', function () {
       customOverlay.setMap(mapRef.current);
+      setIsOpneDetailBar((isOpenDetailBar) => !isOpenDetailBar);
 
       kakao.maps.event.addListener(mapRef.current, 'click', function () {
         customOverlay.setMap(null);
