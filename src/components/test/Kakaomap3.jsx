@@ -7,7 +7,7 @@ function Kakaomap() {
   let mapRef = useRef(null);
   let contentNodeRef = useRef(null);
   let currCategoryRef = useRef(null);
-  let placeOverlay = new kakao.maps.CustomOverlay({ zIndex: 1 });
+  let infowindow = new kakao.maps.CustomOverlay({ zIndex: 1 });
   let ps = new kakao.maps.services.Places(mapRef.current);
 
   const [latlng, setLatlng] = useState([37.566826, 126.9786567]); //위도 lat , 경도 lng
@@ -40,7 +40,7 @@ function Kakaomap() {
     addEventHandle(contentNode, 'mousedown', kakao.maps.event.preventMap);
     addEventHandle(contentNode, 'touchstart', kakao.maps.event.preventMap);
 
-    placeOverlay.setContent(contentNode);
+    infowindow.setContent(contentNode);
     addCategoryClickEvent();
     console.log(latlng);
   }, [latlng]);
@@ -68,7 +68,7 @@ function Kakaomap() {
     var id = this.id,
       className = this.className;
 
-    placeOverlay.setMap(null);
+    infowindow.setMap(null);
 
     if (className === 'on') {
       currCategoryRef.current = '';
@@ -106,7 +106,7 @@ function Kakaomap() {
     if (!currCategoryRef.current) {
       return;
     }
-    placeOverlay.setMap(null);
+    infowindow.setMap(null);
     removeMarker();
 
     ps.categorySearch(currCategoryRef.current, placesSearchCB, {
@@ -202,8 +202,8 @@ function Kakaomap() {
       '<div class="after"></div>';
 
     contentNodeRef.current.innerHTML = content;
-    placeOverlay.setPosition(new kakao.maps.LatLng(place.y, place.x));
-    placeOverlay.setMap(mapRef.current);
+    infowindow.setPosition(new kakao.maps.LatLng(place.y, place.x));
+    infowindow.setMap(mapRef.current);
   }
 
   return (

@@ -17,8 +17,8 @@ function Kakaomap({
   const place = useSelector((state) => state.place.place);
 
   const mapRef = useRef(null);
-  const boundRef = useRef(undefined);
   const infowindow = useRef(new kakao.maps.InfoWindow({ zIndex: 1 }));
+  const contentNodeRef = useRef(null);
   const ps = new kakao.maps.services.Places(mapRef.current);
 
   const [latlng, setLatlng] = useState([37.566826, 126.9786567]); //위도 lat , 경도 lng
@@ -90,11 +90,27 @@ function Kakaomap({
       console.error('Geolocation is not supported by this browser.');
     }
 
+    const contentNode = document.createElement('div');
+    contentNodeRef.current = contentNode;
+    contentNode.className = 'placeinfo_wrap';
+    addEventHandle(contentNode, 'mousedown', kakao.maps.event.preventMap);
+    addEventHandle(contentNode, 'touchstart', kakao.maps.event.preventMap);
+
+    infowindow.current.setContent(contentNode);
+
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, [searchBtnToggle]);
 
   // ------useEffect-------
+
+  function addEventHandle(target, type, callback) {
+    if (target.addEventListener) {
+      target.addEventListener(type, callback);
+    } else {
+      target.attachEvent('on' + type, callback);
+    }
+  }
 
   const handleResize = () => {
     const map = mapRef.current;
@@ -139,14 +155,17 @@ function Kakaomap({
       for (let i = 0; i < data.length; i++) {
         displayMarker(data[i]);
         bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
-        console.log(bounds);
+        // =======================
         newPlaces.push({
           id: data[i].id,
           category_name: data[i].category_name,
           place_name: data[i].place_name,
           address_name: data[i].address_name,
           road_address_name: data[i].road_address_name,
-          position: new window.kakao.maps.LatLng(data[i].y, data[i].x),
+          position: {
+            La: new window.kakao.maps.LatLng(data[i].y, data[i].x).La,
+            Ma: new window.kakao.maps.LatLng(data[i].y, data[i].x).Ma
+          },
           phone: data[i].phone,
           place_url: data[i].place_url
         });
@@ -159,11 +178,6 @@ function Kakaomap({
       alert('검색 결과 중 오류가 발생했습니다.');
     }
   };
-
-  // useEffect(() => {
-  //   let bounds = new kakao.maps.LatLngBounds();
-  //   mapRef.current.setBounds(boundRef.current);
-  // }, [mapRef.current]);
 
   const displayMarker = (place) => {
     let marker = new kakao.maps.Marker({

@@ -47,7 +47,7 @@ function Header({
           <StSearchInput
             value={searchInput}
             onChange={searchInputOnChangeHandler}
-            placeholder="지역 + 메뉴"
+            placeholder="지역 + 메뉴 (최대 15개 검색 가능!)"
           />
           <StIconBtn type="submit">
             <FiSearch />
