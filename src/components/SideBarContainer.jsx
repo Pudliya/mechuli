@@ -19,16 +19,6 @@ export default function SideBarContainer() {
         {isOpen && <SideBarContents />}
         <StToggle onClick={onToggle}>{buttonText}</StToggle>
       </StToggleContainer>
-
-      <div
-        style={{
-          marginLeft: isOpen ? '50px' : '0',
-          transition: 'margin 0.3s ease',
-          display: 'inline-block',
-          height: '100%',
-          verticalAlign: 'top'
-        }}
-      ></div>
     </>
   );
 }
