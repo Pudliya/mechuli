@@ -86,23 +86,16 @@ const StContainer = styled.div`
   align-items: center;
   top: 0;
   left: 0;
-  animation: modal-show 0.5s;
-  @keyframes modal-show {
-    from {
-      opacity: 0;
-      margin-top: -50px;
-    }
-    to {
-      opacity: 1;
-      margin-top: 0;
-    }
-  }
 `;
 
 const StModalBox = styled.div`
+  position: absolute;
+  z-index: 3;
   width: 300px;
   height: 200px;
+  background-color: #fdd5a5;
   border: 5px solid #fddf62;
+  color: white;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -125,6 +118,7 @@ const StButtons = styled.div`
   display: flex;
   gap: 20px;
   & button {
+    font-weight: 700;
     padding: 5px 10px;
     border: none;
     cursor: pointer;

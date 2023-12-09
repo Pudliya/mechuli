@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const StContainer = styled.div`
   position: absolute;
-  top: 51px;
+  top: 45px;
   left: 0;
   z-index: 3;
   margin-left: -400px;
@@ -25,16 +25,16 @@ export const StAvatarFigure = styled.div`
   width: 300px;
   height: 200px;
   border-radius: 10px;
-  margin: 30px 0;
-  & img {
-    width: 300px;
+  margin-top: 30px;
+  & svg {
+    width: 200px;
     height: 200px;
-    border-radius: 10px;
+    margin-left: 50px;
   }
 `;
 export const StTitle = styled.div`
   text-align: center;
-  width: 300px;
+  width: 380px;
   font-size: 30px;
   margin-bottom: 15px;
   border-bottom: 5px solid #fdd5a5;
@@ -42,7 +42,7 @@ export const StTitle = styled.div`
   padding-bottom: 5px;
 `;
 export const StInfo = styled.div`
-  width: 300px;
+  width: 380px;
   font-size: 15px;
   margin-bottom: 10px;
   border-bottom: 5px solid #fdd5a5;
@@ -50,6 +50,16 @@ export const StInfo = styled.div`
   border-radius: 10px;
   padding-bottom: 5px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  & img {
+    width: 20px;
+    height: 20px;
+  }
+  & p > img {
+    margin-bottom: -5px;
+  }
 `;
 
 export const StDetailbarCloseButton = styled.div`
@@ -84,8 +94,9 @@ export const StDetailbarCloseButton = styled.div`
 
 // AddReview
 export const StListContainer = styled.div`
+  margin-top: 10px;
   width: 380px;
-  height: 400px;
+  height: 450px;
   border: 3px solid #fdd5a5;
   display: flex;
   flex-direction: column;
@@ -132,7 +143,7 @@ export const StForm = styled.form`
 
 export const StCard = styled.div`
   width: 350px;
-  border-bottom: 5px solid blanchedalmond;
+  border-bottom: 5px solid #fdd5a5;
   margin-top: 10px;
   display: flex;
   align-items: flex-start;
@@ -168,7 +179,7 @@ export const StCardContent = styled.p`
 export const StReviewDeleteButton = styled.button`
   border: 0;
   border-radius: 10px;
-  background-color: blanchedalmond;
+  background-color: #fdd5a5;
   transition: all 0.2s ease-in-out;
   font-weight: 700;
   color: brown;

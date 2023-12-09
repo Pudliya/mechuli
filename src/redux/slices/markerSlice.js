@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  markerId: undefined
+  markerId: undefined,
+  listId: undefined
 };
 
 const markerSlice = createSlice({
@@ -11,9 +12,13 @@ const markerSlice = createSlice({
     setmarkerId: (state, action) => {
       const id = action.payload;
       state.markerId = id;
+    },
+    setlistId: (state, action) => {
+      const listId = action.payload;
+      state.listId = listId;
     }
   }
 });
 
 export default markerSlice.reducer;
-export const { setmarkerId } = markerSlice.actions;
+export const { setmarkerId, setlistId } = markerSlice.actions;

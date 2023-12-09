@@ -1,16 +1,18 @@
 {
   "posts": [
     {
-      "content": "테스트",
+      "content": "2222",
       "img": [],
-      "password": "1111",
-      "id": 1
+      "password": "2222",
+      "placeId": "17163273",
+      "id": 4
     },
     {
-      "content": "테스트2",
+      "content": "압구정공주떡",
       "img": [],
       "password": "1111",
-      "id": 2
+      "placeId": "8746906",
+      "id": 5
     }
   ]
 }

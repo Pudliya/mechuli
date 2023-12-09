@@ -242,9 +242,8 @@ function Kakaomap({ setIsOpneDetailBar, isOpenDetailBar }) {
         currentOverlay.setMap(null); // 이전 오버레이 닫기
       }
       customOverlay.setMap(mapRef.current);
+      setIsOpneDetailBar(true);
       currentOverlay = customOverlay;
-
-      setIsOpneDetailBar((isOpenDetailBar) => !isOpenDetailBar);
 
       kakao.maps.event.addListener(mapRef.current, 'click', function () {
         customOverlay.setMap(null); // 지도 클릭 시 오버레이 닫기
