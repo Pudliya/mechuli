@@ -45,6 +45,7 @@ export const StTabMenu = styled.div`
     border-radius: 20px;
     line-height: 1.2;
     background: #fff;
+    cursor: pointer;
   }
 `;
 export const StList = styled.section`

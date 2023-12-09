@@ -12,6 +12,7 @@ import {
 } from '../style/LayoutStyled';
 import { useDispatch, useSelector } from 'react-redux';
 import {
+  searchBtnToggle,
   setCurrentLocationToggle,
   setEntireLocationToggle,
   setSearchBtnToggle,
@@ -20,7 +21,6 @@ import {
 
 function Header({}) {
   const [searchInput, setSearchInput] = useState('');
-  const searchBtnToggle = useSelector((state) => state.search.searchBtnToggle);
 
   const dispatch = useDispatch();
 

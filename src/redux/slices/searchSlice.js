@@ -28,6 +28,7 @@ const searchSlice = createSlice({
 
 export default searchSlice.reducer;
 export const {
+  searchBtnToggle,
   setSearchPlace,
   setSearchBtnToggle,
   setEntireLocationToggle,
