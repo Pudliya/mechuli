@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StContainer } from '../style/LayoutStyled';
 import Header from './Header';
-import Kakaomap from './Kakaomap';
+import Kakaomap from './kakaomap/Kakaomap';
 import SideBarContainer from './SideBarContainer';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import DetailBar from './DetailBar';
@@ -13,37 +13,17 @@ import ListDetailBar from './ListDetailBar';
 // 4. 해당 마커의 목록 사이드바에 출력(데이터 전달)
 
 function Layout() {
-  const [searchPlace, setSearchPlace] = useState('');
-  const [searchBtnToggle, setSearchBtnToggle] = useState(false);
-  const [entireLocationToggle, setEntireLocationToggle] = useState(false);
-  const [currentLocationToggle, setCurrentLocationToggle] = useState(false);
   const [isOpenDetailBar, setIsOpneDetailBar] = useState(false);
   const [isOpenListDetailBar, setIsOpenListDetailBar] = useState(false);
   const [listFindTarget, setIsListFindTarget] = useState('');
 
   const queryClient = new QueryClient();
 
-  // console.log('searchBtnToggle : ', searchBtnToggle);
-  // console.log('entireLocationToggle : ', entireLocationToggle);
-  // console.log('currentLocationToggle1 : ', currentLocationToggle);
-
   return (
     <>
       <StContainer>
-        <Header
-          setSearchPlace={setSearchPlace}
-          searchBtnToggle={searchBtnToggle}
-          setSearchBtnToggle={setSearchBtnToggle}
-          setEntireLocationToggle={setEntireLocationToggle}
-          setCurrentLocationToggle={setCurrentLocationToggle}
-        />
+        <Header />
         <Kakaomap
-          searchPlace={searchPlace}
-          searchBtnToggle={searchBtnToggle}
-          entireLocationToggle={entireLocationToggle}
-          setEntireLocationToggle={setEntireLocationToggle}
-          currentLocationToggle={currentLocationToggle}
-          setCurrentLocationToggle={setCurrentLocationToggle}
           isOpenDetailBar={isOpenDetailBar}
           setIsOpneDetailBar={setIsOpneDetailBar}
         />
