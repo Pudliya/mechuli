@@ -6,6 +6,8 @@ import SideBarContainer from '../components/SideBarContainer';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import DetailBar from '../components/DetailBar';
 import ListDetailBar from '../components/ListDetailBar';
+import Mechuli from './Mechuli';
+import styled from 'styled-components';
 
 // 1. 음식점 카테고리에 속하는 마커 출력
 // 2. 한식, 일식, 중식, 양식 카테고리별 마커 출력 (버튼을 만들어서 대신 검색해주는 식)
@@ -21,6 +23,9 @@ function Home() {
 
   return (
     <>
+      <StMechuli>
+        <Mechuli />
+      </StMechuli>
       <StContainer>
         <Header />
         <Kakaomap
@@ -52,3 +57,12 @@ function Home() {
 }
 
 export default Home;
+
+const StMechuli = styled.div`
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  position: absolute;
+  z-index: 10;
+  margin: 0 auto;
+`;
