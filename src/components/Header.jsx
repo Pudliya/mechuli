@@ -10,15 +10,19 @@ import {
   StSearchInput,
   StSearchInputContainer
 } from '../style/LayoutStyled';
-
-function Header({
-  setSearchPlace,
+import { useDispatch, useSelector } from 'react-redux';
+import {
   searchBtnToggle,
-  setSearchBtnToggle,
+  setCurrentLocationToggle,
   setEntireLocationToggle,
-  setCurrentLocationToggle
-}) {
+  setSearchBtnToggle,
+  setSearchPlace
+} from '../redux/slices/searchSlice';
+
+function Header({}) {
   const [searchInput, setSearchInput] = useState('');
+
+  const dispatch = useDispatch();
 
   const searchInputOnChangeHandler = (e) => {
     setSearchInput(e.target.value);
@@ -26,15 +30,15 @@ function Header({
 
   const searchFormOnSubmitHandler = (e) => {
     e.preventDefault();
-    setSearchPlace(searchInput);
-    setSearchBtnToggle(!searchBtnToggle);
-    setEntireLocationToggle(true);
+    dispatch(setSearchPlace(searchInput));
+    dispatch(setSearchBtnToggle(!searchBtnToggle));
+    dispatch(setEntireLocationToggle(true));
   };
 
   const searchInCurrentArea = () => {
-    setSearchPlace(searchInput);
-    setSearchBtnToggle(!searchBtnToggle);
-    setCurrentLocationToggle(true);
+    dispatch(setSearchPlace(searchInput));
+    dispatch(setSearchBtnToggle(!searchBtnToggle));
+    dispatch(setCurrentLocationToggle(true));
   };
 
   return (
