@@ -12,10 +12,6 @@ import DetailBar from './DetailBar';
 // 4. 해당 마커의 목록 사이드바에 출력(데이터 전달)
 
 function Layout() {
-  const [searchPlace, setSearchPlace] = useState('');
-  const [searchBtnToggle, setSearchBtnToggle] = useState(false);
-  const [entireLocationToggle, setEntireLocationToggle] = useState(false);
-  const [currentLocationToggle, setCurrentLocationToggle] = useState(false);
   const [isOpenDetailBar, setIsOpneDetailBar] = useState(false);
 
   const queryClient = new QueryClient();
@@ -27,20 +23,8 @@ function Layout() {
   return (
     <>
       <StContainer>
-        <Header
-          setSearchPlace={setSearchPlace}
-          searchBtnToggle={searchBtnToggle}
-          setSearchBtnToggle={setSearchBtnToggle}
-          setEntireLocationToggle={setEntireLocationToggle}
-          setCurrentLocationToggle={setCurrentLocationToggle}
-        />
+        <Header />
         <Kakaomap
-          searchPlace={searchPlace}
-          searchBtnToggle={searchBtnToggle}
-          entireLocationToggle={entireLocationToggle}
-          setEntireLocationToggle={setEntireLocationToggle}
-          currentLocationToggle={currentLocationToggle}
-          setCurrentLocationToggle={setCurrentLocationToggle}
           isOpenDetailBar={isOpenDetailBar}
           setIsOpneDetailBar={setIsOpneDetailBar}
         />

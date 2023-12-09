@@ -4,29 +4,32 @@ import styled from 'styled-components';
 import { setmarkerId } from '../redux/slices/markerSlice';
 import { setPlace } from '../redux/slices/placeSlice';
 import { StMap } from '../style/KakaomapStyled';
-
-function Kakaomap({
-  searchPlace,
-  searchBtnToggle,
-  entireLocationToggle,
-  setEntireLocationToggle,
-  currentLocationToggle,
+import { setLatlng } from '../redux/slices/locationSlice';
+import {
   setCurrentLocationToggle,
-  setIsOpneDetailBar,
-  isOpenDetailBar
-}) {
+  setEntireLocationToggle
+} from '../redux/slices/searchSlice';
+
+function Kakaomap({ setIsOpneDetailBar, isOpenDetailBar }) {
   const { kakao } = window;
 
   const dispatch = useDispatch();
   const place = useSelector((state) => state.place.place);
+  const searchPlace = useSelector((state) => state.search.searchPlace);
+  const searchBtnToggle = useSelector((state) => state.search.searchBtnToggle);
+  const entireLocationToggle = useSelector(
+    (state) => state.search.entireLocationToggle
+  );
+  const currentLocationToggle = useSelector(
+    (state) => state.search.currentLocationToggle
+  );
   // const markerId = useSelector((state) => state.marker.markerId);
+  const latlng = useSelector((state) => state.location.latlng);
 
   const mapRef = useRef(null);
   const infowindow = useRef(new kakao.maps.InfoWindow({ zIndex: 1 }));
   const contentNodeRef = useRef(null);
   const ps = new kakao.maps.services.Places(mapRef.current);
-
-  const [latlng, setLatlng] = useState([37.566826, 126.9786567]); //위도 lat , 경도 lng
 
   // ------useEffect-------
 
@@ -42,7 +45,7 @@ function Kakaomap({
     // 현재 지도 위치
     kakao.maps.event.addListener(initialMap, 'dragend', function () {
       let center = initialMap.getCenter();
-      setLatlng([center.getLat(), center.getLng()]);
+      dispatch(setLatlng([center.getLat(), center.getLng()]));
     });
 
     // Geolocation API를 이용하여 사용자의 위치 가져오기
@@ -82,13 +85,13 @@ function Kakaomap({
             marker.setMap(null);
             infowindow.current.close();
             handleCurrentSearch(searchPlace);
-            setCurrentLocationToggle(false);
+            dispatch(setCurrentLocationToggle(false));
           } else if (entireLocationToggle === true) {
             if (!searchPlace) return alert('검색어를 입력해주세요!');
             marker.setMap(null);
             infowindow.current.close();
             handleSearch(searchPlace);
-            setEntireLocationToggle(false);
+            dispatch(setEntireLocationToggle(false));
           }
         },
         (error) => {
