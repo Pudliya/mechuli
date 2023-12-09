@@ -1,16 +1,16 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import styled from 'styled-components';
-import { setmarkerId } from '../redux/slices/markerSlice';
-import { setPlace } from '../redux/slices/placeSlice';
-import { StMap } from '../style/KakaomapStyled';
-import { setLatlng } from '../redux/slices/locationSlice';
+import { setmarkerId } from '../../redux/slices/markerSlice';
+import { setPlace } from '../../redux/slices/placeSlice';
+import { StMap } from '../../style/KakaomapStyled';
+import { setLatlng } from '../../redux/slices/locationSlice';
 import {
   setCurrentLocationToggle,
   setEntireLocationToggle
-} from '../redux/slices/searchSlice';
-import defaultMarker from '../assets/marker/defaultMarker.png';
-import mechuliMarker from '../assets/marker/mechuliMarker.png';
+} from '../../redux/slices/searchSlice';
+import defaultMarker from '../../assets/marker/defaultMarker.png';
+import mechuliMarker from '../../assets/marker/mechuliMarker.png';
+import { StContainer } from '../../style/LayoutStyled';
 
 function Kakaomap({ setIsOpneDetailBar, isOpenDetailBar }) {
   const { kakao } = window;
@@ -25,12 +25,8 @@ function Kakaomap({ setIsOpneDetailBar, isOpenDetailBar }) {
   const currentLocationToggle = useSelector(
     (state) => state.search.currentLocationToggle
   );
-  // const markerId = useSelector((state) => state.marker.markerId);
   const latlng = useSelector((state) => state.location.latlng);
-
   const mapRef = useRef(null);
-  // const infowindow = useRef(new kakao.maps.InfoWindow({ zIndex: 1 }));
-  const contentNodeRef = useRef(null);
   const ps = new kakao.maps.services.Places(mapRef.current);
 
   // ------useEffect-------
@@ -86,7 +82,7 @@ function Kakaomap({ setIsOpneDetailBar, isOpenDetailBar }) {
             zIndex: 3
           });
 
-          // mouseover and mouseout
+          // 마커 위 커스텀오버레이 기능 : mouseover and mouseout
           // kakao.maps.event.addListener(marker, 'mouseover', function () {
           //   customOverlay.setMap(mapRef.current);
           // });
@@ -256,15 +252,6 @@ function Kakaomap({ setIsOpneDetailBar, isOpenDetailBar }) {
     });
   };
 
-  // places 데이터 확인
-  useEffect(() => {
-    // console.log('place : ', place);
-  }, [place]);
-
-  useEffect(() => {
-    // console.log('latlng : ', latlng[0], latlng[1]);
-  }, [latlng]);
-
   return (
     <StContainer>
       <StMap id="myMap"></StMap>
@@ -273,89 +260,3 @@ function Kakaomap({ setIsOpneDetailBar, isOpenDetailBar }) {
 }
 
 export default Kakaomap;
-
-const StContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  position: relative;
-  width: 100%;
-  height: 350px;
-
-  #myMap {
-    width: 100%;
-    height: 100vh;
-    position: absolute;
-    overflow: hidden;
-  }
-
-  * {
-    margin: 0;
-    padding: 0;
-    font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
-    font-size: 12px;
-  }
-
-  .placeinfo.current {
-    font-weight: bold;
-    font-size: 14px;
-    border-radius: 20px;
-    padding: 10px 20px;
-    background: #fddf62;
-    color: #1d1d1d;
-    box-shadow: 0px 3px 8px #464646;
-    bottom: 55px;
-  }
-
-  .placeinfo {
-    position: relative;
-    width: 100%;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    border-bottom: 2px solid #ddd;
-    padding-bottom: 10px;
-    background: #fff;
-    bottom: 45px;
-  }
-  .placeinfo:nth-of-type(n) {
-    border: 0;
-    box-shadow: 0px 1px 2px #888;
-  }
-  .placeinfo a,
-  .placeinfo a:hover,
-  .placeinfo a:active {
-    color: #f86706;
-    text-decoration: none;
-  }
-  .placeinfo a,
-  .placeinfo span {
-    display: block;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-  .placeinfo span {
-    margin: 5px 5px 0 5px;
-    cursor: default;
-    font-size: 13px;
-  }
-  .placeinfo .title {
-    font-weight: bold;
-    font-size: 14px;
-    border-radius: 6px 6px 0 0;
-    margin: -1px -1px 0 -1px;
-    padding: 10px;
-    color: #292929;
-    background: #fddf62;
-    background: #fddf62
-      url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png')
-      no-repeat right 14px center;
-  }
-  .placeinfo .tel {
-    color: #0f7833;
-  }
-  .placeinfo .jibun {
-    color: #999;
-    font-size: 11px;
-    margin-top: 0;
-  }
-`;

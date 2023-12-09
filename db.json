@@ -5,6 +5,12 @@
       "img": [],
       "password": "1111",
       "id": 1
+    },
+    {
+      "content": "테스트2",
+      "img": [],
+      "password": "1111",
+      "id": 2
     }
   ]
 }
