@@ -21,7 +21,7 @@ export const StMap = styled.div`
     background: #fddf62;
     color: #1d1d1d;
     box-shadow: 0px 3px 8px #464646;
-    bottom: 55px;
+    /* bottom: 55px; */
   }
 
   .placeinfo {
@@ -32,7 +32,7 @@ export const StMap = styled.div`
     border-bottom: 2px solid #ddd;
     padding-bottom: 10px;
     background: #fff;
-    bottom: 45px;
+    /* bottom: 80px; */
   }
   .placeinfo:nth-of-type(n) {
     border: 0;

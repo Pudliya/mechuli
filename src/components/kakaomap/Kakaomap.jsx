@@ -79,6 +79,7 @@ function Kakaomap({ setIsOpneDetailBar, isOpenDetailBar }) {
             content,
             position: new kakao.maps.LatLng(latitude, longitude),
             xAnchor: 0.5,
+            yAnchor: 1.9,
             zIndex: 3
           });
 
@@ -227,7 +228,7 @@ function Kakaomap({ setIsOpneDetailBar, isOpenDetailBar }) {
       content,
       position: new kakao.maps.LatLng(place.y, place.x),
       xAnchor: 0.5,
-      yAnchor: 1,
+      yAnchor: 1.65,
       zIndex: 3
     });
 
