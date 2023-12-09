@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StContainer } from '../style/LayoutStyled';
 import Header from './Header';
-import Kakaomap from './Kakaomap';
+import Kakaomap from './kakaomap/Kakaomap';
 import SideBarContainer from './SideBarContainer';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import DetailBar from './DetailBar';
@@ -15,10 +15,6 @@ function Layout() {
   const [isOpenDetailBar, setIsOpneDetailBar] = useState(false);
 
   const queryClient = new QueryClient();
-
-  // console.log('searchBtnToggle : ', searchBtnToggle);
-  // console.log('entireLocationToggle : ', entireLocationToggle);
-  // console.log('currentLocationToggle1 : ', currentLocationToggle);
 
   return (
     <>
