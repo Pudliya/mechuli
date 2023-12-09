@@ -10,6 +10,7 @@ import {
   setEntireLocationToggle
 } from '../redux/slices/searchSlice';
 import defaultMarker from '../assets/marker/defaultMarker.png';
+import mechuliMarker from '../assets/marker/mechuliMarker.png';
 
 function Kakaomap({ setIsOpneDetailBar, isOpenDetailBar }) {
   const { kakao } = window;
@@ -57,9 +58,9 @@ function Kakaomap({ setIsOpneDetailBar, isOpenDetailBar }) {
           const userLatLng = new kakao.maps.LatLng(latitude, longitude);
           initialMap.setCenter(userLatLng);
 
-          const imageSrc = defaultMarker;
-          const imageSize = new kakao.maps.Size(40, 40);
-          const imageOption = { offset: new kakao.maps.Point(19, 39) };
+          const imageSrc = mechuliMarker;
+          const imageSize = new kakao.maps.Size(55, 55);
+          const imageOption = { offset: new kakao.maps.Point(19, 30) };
 
           const markerImage = new kakao.maps.MarkerImage(
             imageSrc,
@@ -85,13 +86,14 @@ function Kakaomap({ setIsOpneDetailBar, isOpenDetailBar }) {
             zIndex: 3
           });
 
-          kakao.maps.event.addListener(marker, 'mouseover', function () {
-            customOverlay.setMap(mapRef.current);
-          });
+          // mouseover and mouseout
+          // kakao.maps.event.addListener(marker, 'mouseover', function () {
+          //   customOverlay.setMap(mapRef.current);
+          // });
 
-          kakao.maps.event.addListener(marker, 'mouseout', function () {
-            customOverlay.setMap(null);
-          });
+          // kakao.maps.event.addListener(marker, 'mouseout', function () {
+          //   customOverlay.setMap(null);
+          // });
 
           kakao.maps.event.addListener(mapRef.current, 'drag', function () {
             marker.setMap(null);
@@ -301,7 +303,7 @@ const StContainer = styled.div`
     background: #fddf62;
     color: #1d1d1d;
     box-shadow: 0px 3px 8px #464646;
-    bottom: 65px;
+    bottom: 55px;
   }
 
   .placeinfo {
