@@ -3,13 +3,21 @@ import { StSideBar } from '../style/StSideBar';
 import SideBarCategory from './SideBarCategory';
 import SideBarLIst from './SideBarLIst';
 
-export default function SideBarContents() {
+export default function SideBarContents({
+  isOpenListDetailBar,
+  setIsOpenListDetailBar,
+  setIsListFindTarget
+}) {
   return (
     <>
       <StSideBar>
         <SideBarCategory />
         <h2>맛집 리스트</h2>
-        <SideBarLIst />
+        <SideBarLIst
+          isOpenListDetailBar={isOpenListDetailBar}
+          setIsOpenListDetailBar={setIsOpenListDetailBar}
+          setIsListFindTarget={setIsListFindTarget}
+        />
       </StSideBar>
     </>
   );

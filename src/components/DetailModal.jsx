@@ -12,15 +12,20 @@ import {
   StButtons
 } from '../style/StDetailModal';
 import { StDeleteImage } from '../style/StAddSlider';
+import { useSelector } from 'react-redux';
 
-function DetailModal({ isModal, setIsModal }) {
+function DetailModal({ isModal, setIsModal, listFindTarget }) {
   const [content, setContent] = useState('');
   const [password, setPassword] = useState('');
+  const [showImages, setShowImages] = useState([]);
+  const placeId = useSelector((state) => state.marker.markerId);
+  const place = useSelector((state) => state.place.place);
+
+  console.log(listFindTarget);
+
   const contentHandler = (e) => {
     setContent(e.target.value);
   };
-
-  const [showImages, setShowImages] = useState([]);
 
   // 이미지 상대경로 저장
   const handleAddImages = (event) => {
@@ -54,7 +59,8 @@ function DetailModal({ isModal, setIsModal }) {
     const newPost = {
       content,
       img: showImages,
-      password
+      password,
+      placeId: listFindTarget
     };
     mutation.mutate(newPost);
     setShowImages([]);

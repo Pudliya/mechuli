@@ -59,6 +59,11 @@ export const StListItem = styled.div`
   background: #fff;
   padding: 1rem;
   border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    scale: 1.08;
+  }
   & svg {
     max-width: 100px;
     width: 100%;

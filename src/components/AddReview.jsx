@@ -9,13 +9,17 @@ import {
 import { getPosts } from '../api/posts';
 import { useQuery } from 'react-query';
 import SlideModal from './SlideModal';
+import { useSelector } from 'react-redux';
 export default function AddReview({
   setIsModal,
   setIsRemoveModal,
-  setFoundTarget
+  setFoundTarget,
+  listFindTarget
 }) {
   // posts 조회
   const { isLoading, isError, data } = useQuery('posts', getPosts);
+
+  const placeId = useSelector((state) => state.marker.markerId);
 
   if (isLoading) {
     return (
@@ -32,7 +36,6 @@ export default function AddReview({
       </StCard>
     );
   }
-
   return (
     <StListContainer>
       <StForm>
@@ -49,31 +52,48 @@ export default function AddReview({
           />
         </button>
       </StForm>
+
       {data.map((item) => {
-        return (
-          <>
-            <StCard key={item.id}>
-              {item.img == '' ? (
-                <>
-                  <StCardContent>{item.content}</StCardContent>
-                </>
-              ) : (
-                <>
-                  <SlideModal imgurl={item.img} />
-                  <StCardContent>{item.content}</StCardContent>
-                </>
-              )}
-            </StCard>
-            <StReviewDeleteButton
-              onClick={() => {
-                setIsRemoveModal(true);
-                setFoundTarget(item.id);
-              }}
-            >
-              삭제
-            </StReviewDeleteButton>
-          </>
+        // console.log(item.placeId === (placeId === listFindTarget));
+        console.log('item.placeId', item.placeId);
+        console.log('placeId', placeId);
+        console.log('listFindTarget', listFindTarget);
+        console.log('--------------------------------');
+        console.log('item.placeId == placeId', item.placeId == placeId);
+        console.log('placeId == listFindTarget', placeId == listFindTarget);
+        console.log(
+          'item.placeId == listFindTarget',
+          item.placeId == listFindTarget
         );
+        console.log('--------------------------------');
+
+        console.log(item.placeId);
+        if (item.placeId === placeId || item.placeId === listFindTarget) {
+          return (
+            <>
+              <StCard key={item.id}>
+                {item.img == '' ? (
+                  <>
+                    <StCardContent>{item.content}</StCardContent>
+                  </>
+                ) : (
+                  <>
+                    <SlideModal imgurl={item.img} />
+                    <StCardContent>{item.content}</StCardContent>
+                  </>
+                )}
+              </StCard>
+              <StReviewDeleteButton
+                onClick={() => {
+                  setIsRemoveModal(true);
+                  setFoundTarget(item.id);
+                }}
+              >
+                삭제
+              </StReviewDeleteButton>
+            </>
+          );
+        }
       })}
     </StListContainer>
   );

@@ -10,7 +10,7 @@ export const StDeleteImage = styled.div`
   align-items: center;
   margin-left: 55px;
   cursor: pointer;
-  border: 3px solid blanchedalmond;
+  border: 3px solid #fdd5a5;
   border-radius: 50%;
   & img {
     scale: 0.5;

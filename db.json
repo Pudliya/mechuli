@@ -1,3 +1,25 @@
 {
-  "posts": []
+  "posts": [
+    {
+      "content": "2222",
+      "img": [],
+      "password": "2222",
+      "placeId": "17163273",
+      "id": 4
+    },
+    {
+      "content": "압구정공주떡",
+      "img": [],
+      "password": "1111",
+      "placeId": "8746906",
+      "id": 5
+    },
+    {
+      "content": "중앙해장",
+      "img": [],
+      "password": "1111",
+      "placeId": "27531028",
+      "id": 6
+    }
+  ]
 }

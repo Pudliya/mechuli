@@ -1,55 +1,55 @@
-import AddReview from './AddReview';
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import {
-  StContainer,
-  StAvatarFigure,
-  StTitle,
-  StDetailbarCloseButton,
-  StInfo
-} from '../style/StDetailBar';
-import DetailModal from './DetailModal';
-import { useState } from 'react';
-import DetailRemoveModa from './DetailRemoveModa';
-import { useSelector } from 'react-redux';
+  StListDetailbarCloseButton,
+  StListDetailBarContainer,
+  StListDetailBarAvatarFigure,
+  StListDetailBarInfo,
+  StListDetailBarTitle
+} from '../style/StListDetailBar';
 import CategoryIcon from './CategoryIcon';
 import markerImg from '../assets/marker/defaultMarker.png';
 import callImg from '../assets/marker/call.png';
+import AddReview from './AddReview';
+import DetailModal from './DetailModal';
+import DetailRemoveModa from './DetailRemoveModa';
+import { listToggleOpen } from '../redux/slices/ListDetailBarSlice';
 
-export default function DetailBar({
-  isOpenDetailBar,
-  setIsOpneDetailBar,
-  listFindTarget
-}) {
+export default function ListDetailBar({ listFindTarget }) {
   const [isModal, setIsModal] = useState(false);
   const [isRemoveModal, setIsRemoveModal] = useState(false);
   const [foundTarget, setFoundTarget] = useState('');
   const placeList = useSelector((state) => state.place.place);
 
-  const findId = useSelector((state) => state.marker.markerId);
+  const listDetailBar = useSelector((state) => state.listDetail.listToggle);
+  const dispatch = useDispatch();
 
   return (
     <>
       {placeList?.map((item) => {
-        if (item.id === findId) {
+        if (item.id === listFindTarget) {
           return (
             <>
-              <StDetailbarCloseButton
-                className={isOpenDetailBar ? 'close' : ''}
+              <StListDetailbarCloseButton
+                className={listDetailBar ? 'closee' : ''}
                 onClick={() => {
-                  setIsOpneDetailBar((isOpenDetailBar) => !isOpenDetailBar);
+                  dispatch(listToggleOpen(!listDetailBar));
                 }}
               >
                 <img
                   src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAvklEQVR4nO2VTQqDMBBG30qXhi7b+9gcvQr1Ku0NLIERQvAnjkmLNB+4kfnmZZJJBoqK/k034A7UOzwu1opXDX0DI9ABJsJjJNZ5XsBVA7aSYPr6DbiRGN/TasCVt/ot+Bz0ITlUaiSBn3AALkFMuMBnEJMcng26tpX9wr+YJjxcebZKY+FZoSyc6VzDfQU65oSbXzRXs3JlYu55cuik5PD64JPZaZ9Mm2BIuJF6nrGIGNudW1ZJpWpoUdE59QFWDIMmRvQTIgAAAABJRU5ErkJggg=="
                   alt="사이드바 닫기"
                 />
-              </StDetailbarCloseButton>
+              </StListDetailbarCloseButton>
 
-              <StContainer className={isOpenDetailBar ? 'active' : ''}>
-                <StAvatarFigure>
+              <StListDetailBarContainer
+                className={listDetailBar ? 'activee' : ''}
+              >
+                <StListDetailBarAvatarFigure>
                   <CategoryIcon category={item.category_name} />
-                </StAvatarFigure>
-                <StTitle>{item.place_name}</StTitle>
-                <StInfo>
+                </StListDetailBarAvatarFigure>
+                <StListDetailBarTitle>{item.place_name}</StListDetailBarTitle>
+                <StListDetailBarInfo>
                   <h1>
                     <img src={markerImg} alt="marker" />
                     {item.address_name}
@@ -58,7 +58,7 @@ export default function DetailBar({
                     <img src={callImg} alt="call" />
                     {item.phone}
                   </p>
-                </StInfo>
+                </StListDetailBarInfo>
 
                 <AddReview
                   setIsModal={setIsModal}
@@ -66,7 +66,7 @@ export default function DetailBar({
                   setFoundTarget={setFoundTarget}
                   listFindTarget={listFindTarget}
                 />
-              </StContainer>
+              </StListDetailBarContainer>
               <DetailModal
                 isModal={isModal}
                 setIsModal={setIsModal}

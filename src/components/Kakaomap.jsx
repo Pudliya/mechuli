@@ -209,7 +209,7 @@ function Kakaomap({
     kakao.maps.event.addListener(marker, 'click', function () {
       dispatch(setmarkerId(place.id));
       customOverlay.setMap(mapRef.current);
-      setIsOpneDetailBar((isOpenDetailBar) => !isOpenDetailBar);
+      setIsOpneDetailBar(true);
 
       kakao.maps.event.addListener(mapRef.current, 'click', function () {
         customOverlay.setMap(null);
