@@ -7,7 +7,7 @@ export const StListDetailBarContainer = styled.div`
   z-index: 3;
   margin-left: -400px;
   width: 400px;
-  height: 95vh;
+  height: calc(100% - 65px);
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   background-color: blanchedalmond;
   display: flex;

@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
 export const StToggleContainer = styled.div`
-  height: 95vh;
+  height: calc(100% - 65px);
   position: fixed;
-  top: 5vh;
+  bottom: 0;
   z-index: 2;
   display: inline-flex;
   align-items: center;
