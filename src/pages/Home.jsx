@@ -53,12 +53,3 @@ function Home() {
 }
 
 export default Home;
-
-const StMechuli = styled.div`
-  top: 50%;
-  left: 50%;
-  transform: translateY(-50%) translateX(-50%);
-  position: absolute;
-  z-index: 10;
-  margin: 0 auto;
-`;
