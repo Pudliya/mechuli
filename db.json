@@ -1,18 +1,11 @@
 {
   "posts": [
     {
-      "content": "2222",
-      "img": [],
-      "password": "2222",
-      "placeId": "17163273",
-      "id": 4
-    },
-    {
-      "content": "압구정공주떡",
+      "content": "맛있어요",
       "img": [],
       "password": "1111",
-      "placeId": "8746906",
-      "id": 5
+      "placeId": "",
+      "id": 1
     }
   ]
 }
