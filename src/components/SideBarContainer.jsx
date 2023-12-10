@@ -15,7 +15,6 @@ export default function SideBarContainer({ setIsListFindTarget }) {
   const onToggle = () => {
     dispatch(setIsOpen(!isOpen));
   };
-  console.log(isOpen);
   useEffect(() => {
     setButtonText(
       isOpen ? <SlArrowLeft size={25} /> : <SlArrowRight size={25} />
