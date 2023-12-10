@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
 export const StToggleContainer = styled.div`
-  height: 95vh;
+  height: calc(100% - 65px);
   position: fixed;
-  top: 5vh;
+  bottom: 0;
   z-index: 2;
   display: inline-flex;
   align-items: center;
@@ -14,6 +14,7 @@ export const StToggle = styled.button`
   background: #fddf62;
   border: 0;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  cursor: pointer;
 `;
 
 export const StSideBar = styled.section`

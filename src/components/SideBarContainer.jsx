@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StToggle, StToggleContainer } from '../style/StSideBar';
 import SideBarContents from './SideBarContents';
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,10 +14,13 @@ export default function SideBarContainer({ setIsListFindTarget }) {
 
   const onToggle = () => {
     dispatch(setIsOpen(!isOpen));
-    setButtonText(
-      isOpen ? <SlArrowRight size={25} /> : <SlArrowLeft size={25} />
-    );
   };
+  console.log(isOpen);
+  useEffect(() => {
+    setButtonText(
+      isOpen ? <SlArrowLeft size={25} /> : <SlArrowRight size={25} />
+    );
+  }, [isOpen]);
 
   return (
     <>

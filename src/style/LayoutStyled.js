@@ -10,7 +10,7 @@ export const StContainer = styled.div`
 
 export const StLayoutDiv = styled.div`
   width: 100%;
-  height: 5vh;
+  height: 65px;
   display: flex;
   align-items: center;
   justify-content: center;
