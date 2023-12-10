@@ -6,7 +6,6 @@ import SideBarContainer from '../components/SideBarContainer';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import DetailBar from '../components/DetailBar';
 import ListDetailBar from '../components/ListDetailBar';
-import Mechuli from './Mechuli';
 import styled from 'styled-components';
 
 // 1. 음식점 카테고리에 속하는 마커 출력
@@ -23,9 +22,6 @@ function Home() {
 
   return (
     <>
-      <StMechuli>
-        <Mechuli />
-      </StMechuli>
       <StContainer>
         <Header />
         <Kakaomap
