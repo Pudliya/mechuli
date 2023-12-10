@@ -25,13 +25,33 @@ export const StSideBar = styled.section`
   top: 0;
   left: 0;
   border-radius: 0 2rem 2rem 0;
-  overflow-y: scroll;
+  overflow-y: visible;
   overflow-x: hidden;
 
   & h2 {
     text-align: center;
     margin: 2rem 0;
     font-size: 1.7rem;
+  }
+
+  /* 스크롤바의 폭 너비 */
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #fddf62; /* 스크롤바 색상 */
+    border-radius: 10px; /* 스크롤바 둥근 테두리 */
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(253, 223, 98, 0.1); /*스크롤바 뒷 배경 색상*/
+  }
+  &::-webkit-scrollbar-button:vertical:start:decrement,
+  &::-webkit-scrollbar-button:vertical:start:increment,
+  &::-webkit-scrollbar-button:vertical:end:decrement {
+    display: block;
+    height: 15px;
   }
 `;
 
@@ -40,7 +60,7 @@ export const StTabMenu = styled.div`
   justify-content: space-between;
   & button {
     font-size: 1.2rem;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 1.2rem;
     border: 0;
     border-radius: 20px;
     line-height: 1.2;

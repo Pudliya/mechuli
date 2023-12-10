@@ -5,34 +5,35 @@ import CategoryIcon from './CategoryIcon';
 import { listToggleOpen } from '../redux/slices/ListDetailBarSlice';
 import { setmarkerId } from '../redux/slices/markerSlice';
 
-export default function SideBarLIst({
-  setIsOpenListDetailBar,
-  setIsListFindTarget
-}) {
+export default function SideBarLIst({ setIsListFindTarget }) {
   const storeList = useSelector((state) => state.place.place);
   const dispatch = useDispatch();
   return (
     <>
       <StList>
-        {storeList?.map((place) => {
-          return (
-            <>
-              <StListItem
-                onClick={() => {
-                  dispatch(listToggleOpen(true));
+        {storeList ? (
+          storeList?.map((place) => {
+            return (
+              <>
+                <StListItem
+                  onClick={() => {
+                    dispatch(listToggleOpen(true));
 
-                  setIsListFindTarget(place.id);
-                }}
-              >
-                <CategoryIcon category={place.category_name} />
-                <StItemText>
-                  <p>{place.place_name}</p>
-                  {place.road_address_name}
-                </StItemText>
-              </StListItem>
-            </>
-          );
-        })}
+                    setIsListFindTarget(place.id);
+                  }}
+                >
+                  <CategoryIcon category={place.category_name} />
+                  <StItemText>
+                    <p>{place.place_name}</p>
+                    {place.road_address_name}
+                  </StItemText>
+                </StListItem>
+              </>
+            );
+          })
+        ) : (
+          <h2>검색된 맛집이 없어요!</h2>
+        )}
       </StList>
     </>
   );

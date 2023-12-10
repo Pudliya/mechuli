@@ -5,6 +5,7 @@ export const StContainer = styled.div`
   flex-direction: column;
   width: 100vw;
   height: 100vh;
+  align-items: center;
 `;
 
 export const StLayoutDiv = styled.div`
@@ -17,14 +18,16 @@ export const StLayoutDiv = styled.div`
   padding: 10px;
   z-index: 2;
   position: fixed;
+  box-shadow: 0px 2px 30px 0px #000;
 `;
 
 export const StLogo = styled.div`
   position: absolute;
-  left: 5px;
-  top: 5px;
+  left: 30px;
+  top: 20px;
   font-size: 32px;
   font-weight: bold;
+  color: #fddf62;
   img {
     width: 48px;
   }
@@ -46,9 +49,10 @@ export const StSearchInputContainer = styled.div`
 
 export const StSearchInput = styled.input`
   width: 300px;
-  height: 30px;
+  height: 35px;
   border-radius: 20px;
-  padding: 0 40px 0 15px;
+  font-size: 1rem;
+  text-indent: 1rem;
 `;
 
 export const StIconBtn = styled.button`
@@ -64,12 +68,11 @@ export const StIconBtn = styled.button`
 export const StSearchCurrentAreaBtn = styled.button`
   position: fixed;
   bottom: 5%;
-  left: 50%;
   background-color: white;
   border-radius: 20px;
   color: black;
   font-size: 1rem;
-  padding: 10px 20px;
+  padding: 0.7rem 1rem;
   border: 2px solid #fddf62;
   box-shadow: 0px 0px 28px rgba(0, 0, 0, 0.25),
     0px 3px 20px 7px rgba(0, 0, 0, 0.22);

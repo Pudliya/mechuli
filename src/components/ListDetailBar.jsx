@@ -14,6 +14,7 @@ import AddReview from './AddReview';
 import DetailModal from './DetailModal';
 import DetailRemoveModa from './DetailRemoveModa';
 import { listToggleOpen } from '../redux/slices/ListDetailBarSlice';
+import { IoClose } from 'react-icons/io5';
 
 export default function ListDetailBar({ listFindTarget }) {
   const [isModal, setIsModal] = useState(false);
@@ -36,10 +37,7 @@ export default function ListDetailBar({ listFindTarget }) {
                   dispatch(listToggleOpen(!listDetailBar));
                 }}
               >
-                <img
-                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAvklEQVR4nO2VTQqDMBBG30qXhi7b+9gcvQr1Ku0NLIERQvAnjkmLNB+4kfnmZZJJBoqK/k034A7UOzwu1opXDX0DI9ABJsJjJNZ5XsBVA7aSYPr6DbiRGN/TasCVt/ot+Bz0ITlUaiSBn3AALkFMuMBnEJMcng26tpX9wr+YJjxcebZKY+FZoSyc6VzDfQU65oSbXzRXs3JlYu55cuik5PD64JPZaZ9Mm2BIuJF6nrGIGNudW1ZJpWpoUdE59QFWDIMmRvQTIgAAAABJRU5ErkJggg=="
-                  alt="사이드바 닫기"
-                />
+                <IoClose size={55} />
               </StListDetailbarCloseButton>
 
               <StListDetailBarContainer
