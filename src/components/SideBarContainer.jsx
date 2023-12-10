@@ -1,31 +1,29 @@
 import React, { useState } from 'react';
 import { StToggle, StToggleContainer } from '../style/StSideBar';
 import SideBarContents from './SideBarContents';
+import { useDispatch, useSelector } from 'react-redux';
+import { setIsOpen } from '../redux/slices/sideBarSlice';
+import { SlArrowLeft, SlArrowRight } from 'react-icons/sl';
 
-export default function SideBarContainer({
-  isOpenListDetailBar,
-  setIsOpenListDetailBar,
-  setIsListFindTarget
-}) {
-  const [isOpen, setIsOpen] = useState(false);
+export default function SideBarContainer({ setIsListFindTarget }) {
+  // const [isOpen, setIsOpen] = useState(false);
+  const [buttonText, setButtonText] = useState(<SlArrowRight size={25} />);
 
-  const [buttonText, setButtonText] = useState('>');
+  const isOpen = useSelector((state) => state.sideBar.isOpen);
+  const dispatch = useDispatch();
 
   const onToggle = () => {
-    setIsOpen(!isOpen);
-
-    setButtonText(isOpen ? '>' : '<');
+    dispatch(setIsOpen(!isOpen));
+    setButtonText(
+      isOpen ? <SlArrowRight size={25} /> : <SlArrowLeft size={25} />
+    );
   };
 
   return (
     <>
       <StToggleContainer>
         {isOpen && (
-          <SideBarContents
-            isOpenListDetailBar={isOpenListDetailBar}
-            setIsOpenListDetailBar={setIsOpenListDetailBar}
-            setIsListFindTarget={setIsListFindTarget}
-          />
+          <SideBarContents setIsListFindTarget={setIsListFindTarget} />
         )}
         <StToggle onClick={onToggle}>{buttonText}</StToggle>
       </StToggleContainer>

@@ -2,12 +2,12 @@ import styled from 'styled-components';
 
 export const StListDetailBarContainer = styled.div`
   position: absolute;
-  top: 45px;
+  bottom: 0;
   left: 0;
   z-index: 3;
   margin-left: -400px;
   width: 400px;
-  height: 100vh;
+  height: 95vh;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   background-color: blanchedalmond;
   display: flex;
@@ -63,6 +63,9 @@ export const StListDetailBarInfo = styled.div`
 `;
 
 export const StListDetailbarCloseButton = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
   z-index: 3;
   margin-left: -480px;

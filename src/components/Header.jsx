@@ -18,6 +18,7 @@ import {
   setSearchBtnToggle,
   setSearchPlace
 } from '../redux/slices/searchSlice';
+import { setIsOpen } from '../redux/slices/sideBarSlice';
 
 function Header({}) {
   const [searchInput, setSearchInput] = useState('');
@@ -33,20 +34,20 @@ function Header({}) {
     dispatch(setSearchPlace(searchInput));
     dispatch(setSearchBtnToggle(!searchBtnToggle));
     dispatch(setEntireLocationToggle(true));
+    dispatch(setIsOpen(true));
   };
 
   const searchInCurrentArea = () => {
     dispatch(setSearchPlace(searchInput));
     dispatch(setSearchBtnToggle(!searchBtnToggle));
     dispatch(setCurrentLocationToggle(true));
+    dispatch(setIsOpen(true));
   };
 
   return (
     <>
       <StLayoutDiv>
-        <StLogo>
-          <img src={mechuliLogo} alt="Mechuli 로고" />
-        </StLogo>
+        <StLogo>MECHULI</StLogo>
         <StSearchForm onSubmit={searchFormOnSubmitHandler}>
           <StSearchInputContainer>
             <StSearchInput

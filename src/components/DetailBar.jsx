@@ -13,6 +13,7 @@ import { useSelector } from 'react-redux';
 import CategoryIcon from './CategoryIcon';
 import markerImg from '../assets/marker/defaultMarker.png';
 import callImg from '../assets/marker/call.png';
+import { IoClose } from 'react-icons/io5';
 
 export default function DetailBar({
   isOpenDetailBar,
@@ -38,10 +39,7 @@ export default function DetailBar({
                   setIsOpneDetailBar((isOpenDetailBar) => !isOpenDetailBar);
                 }}
               >
-                <img
-                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAvklEQVR4nO2VTQqDMBBG30qXhi7b+9gcvQr1Ku0NLIERQvAnjkmLNB+4kfnmZZJJBoqK/k034A7UOzwu1opXDX0DI9ABJsJjJNZ5XsBVA7aSYPr6DbiRGN/TasCVt/ot+Bz0ITlUaiSBn3AALkFMuMBnEJMcng26tpX9wr+YJjxcebZKY+FZoSyc6VzDfQU65oSbXzRXs3JlYu55cuik5PD64JPZaZ9Mm2BIuJF6nrGIGNudW1ZJpWpoUdE59QFWDIMmRvQTIgAAAABJRU5ErkJggg=="
-                  alt="사이드바 닫기"
-                />
+                <IoClose size={55} />
               </StDetailbarCloseButton>
 
               <StContainer className={isOpenDetailBar ? 'active' : ''}>

@@ -4,6 +4,7 @@ import markerSlice from './slices/markerSlice';
 import ListDetailBarSlice from './slices/ListDetailBarSlice';
 import searchSlice from './slices/searchSlice';
 import locationSlice from './slices/locationSlice';
+import sideBarSlice from './slices/sideBarSlice';
 
 const store = configureStore({
   reducer: {
@@ -11,7 +12,8 @@ const store = configureStore({
     marker: markerSlice,
     listDetail: ListDetailBarSlice,
     search: searchSlice,
-    location: locationSlice
+    location: locationSlice,
+    sideBar: sideBarSlice
   }
 });
 
