@@ -9,11 +9,12 @@ import {
 import DetailModal from './DetailModal';
 import { useState } from 'react';
 import DetailRemoveModa from './DetailRemoveModa';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import CategoryIcon from './CategoryIcon';
 import markerImg from '../assets/marker/defaultMarker.png';
 import callImg from '../assets/marker/call.png';
 import { IoClose } from 'react-icons/io5';
+import { toggleOpen } from '../redux/slices/ListDetailBarSlice';
 
 export default function DetailBar({
   isOpenDetailBar,
@@ -26,6 +27,9 @@ export default function DetailBar({
   const placeList = useSelector((state) => state.place.place);
 
   const findId = useSelector((state) => state.marker.markerId);
+  const toggle = useSelector((state) => state.listDetail.toggle);
+
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -34,15 +38,15 @@ export default function DetailBar({
           return (
             <>
               <StDetailbarCloseButton
-                className={isOpenDetailBar ? 'close' : ''}
+                className={toggle ? 'close' : ''}
                 onClick={() => {
-                  setIsOpneDetailBar((isOpenDetailBar) => !isOpenDetailBar);
+                  dispatch(toggleOpen(!toggle));
                 }}
               >
                 <IoClose size={55} />
               </StDetailbarCloseButton>
 
-              <StContainer className={isOpenDetailBar ? 'active' : ''}>
+              <StContainer className={toggle ? 'active' : ''}>
                 <StAvatarFigure>
                   <CategoryIcon category={item.category_name} />
                 </StAvatarFigure>
