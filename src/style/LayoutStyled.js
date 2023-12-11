@@ -22,9 +22,10 @@ export const StLayoutDiv = styled.div`
 `;
 
 export const StLogo = styled.div`
+  display: flex;
+  align-items: center;
   position: absolute;
   left: 30px;
-  top: 20px;
   font-size: 32px;
   font-weight: bold;
   color: #fddf62;

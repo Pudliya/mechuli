@@ -97,11 +97,14 @@ export const StImgButton = styled.div`
 export const StCloseModal = styled.div`
   position: absolute;
   border-radius: 10px 10px 0 0;
-  top: 100px;
+  top: calc(50% - 338px);
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
   width: 200px;
   height: 30px;
   z-index: 4;
   background-color: #fddf62;
+  cursor: pointer;
   animation: modal-show 0.5s;
   @keyframes modal-show {
     from {
@@ -116,7 +119,6 @@ export const StCloseModal = styled.div`
   & img {
     margin-left: 85px;
     margin-top: 3px;
-    cursor: pointer;
     transition: all 0.2s ease-in-out;
     &:hover {
       transform: scale(1.2);
