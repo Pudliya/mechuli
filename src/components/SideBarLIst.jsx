@@ -2,7 +2,7 @@ import React from 'react';
 import { StItemText, StList, StListItem } from '../style/StSideBar';
 import { useDispatch, useSelector } from 'react-redux';
 import CategoryIcon from './CategoryIcon';
-import { listToggleOpen } from '../redux/slices/ListDetailBarSlice';
+import { listToggleOpen, toggleOpen } from '../redux/slices/ListDetailBarSlice';
 import { setmarkerId } from '../redux/slices/markerSlice';
 
 export default function SideBarLIst({ setIsListFindTarget }) {
@@ -18,6 +18,7 @@ export default function SideBarLIst({ setIsListFindTarget }) {
                 <StListItem
                   onClick={() => {
                     dispatch(listToggleOpen(true));
+                    dispatch(toggleOpen(false));
 
                     setIsListFindTarget(place.id);
                   }}

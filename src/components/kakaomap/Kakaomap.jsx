@@ -11,6 +11,10 @@ import {
 import defaultMarker from '../../assets/marker/defaultMarker.png';
 import mechuliMarker from '../../assets/marker/mechuliMarker.png';
 import { StContainer } from '../../style/LayoutStyled';
+import {
+  listToggleOpen,
+  toggleOpen
+} from '../../redux/slices/ListDetailBarSlice';
 
 function Kakaomap({ setIsOpneDetailBar, isOpenDetailBar }) {
   const { kakao } = window;
@@ -25,6 +29,7 @@ function Kakaomap({ setIsOpneDetailBar, isOpenDetailBar }) {
   const currentLocationToggle = useSelector(
     (state) => state.search.currentLocationToggle
   );
+  const listToggle = useSelector((state) => state.listDetail.listToggle);
   const latlng = useSelector((state) => state.location.latlng);
   const mapRef = useRef(null);
   const ps = new kakao.maps.services.Places(mapRef.current);
@@ -242,7 +247,12 @@ function Kakaomap({ setIsOpneDetailBar, isOpenDetailBar }) {
         currentOverlay.setMap(null); // 이전 오버레이 닫기
       }
       customOverlay.setMap(mapRef.current);
-      setIsOpneDetailBar(true);
+      dispatch(toggleOpen(true));
+      console.log('listToggle : ', listToggle);
+      if (listToggle === true) {
+        dispatch(listToggleOpen(false));
+      }
+
       currentOverlay = customOverlay;
 
       kakao.maps.event.addListener(mapRef.current, 'click', function () {

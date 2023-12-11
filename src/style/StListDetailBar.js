@@ -17,7 +17,7 @@ export const StListDetailBarContainer = styled.div`
   padding: 20px;
   transition: all 0.4s ease-in-out;
   &.activee {
-    margin-left: 385px;
+    margin-left: 0px;
   }
 `;
 
@@ -91,6 +91,6 @@ export const StListDetailbarCloseButton = styled.div`
   }
   transition: all 0.4s ease-in-out;
   &.closee {
-    margin-left: 385px;
+    margin-left: 0px;
   }
 `;

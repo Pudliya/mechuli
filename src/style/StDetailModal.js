@@ -97,7 +97,7 @@ export const StImgButton = styled.div`
 export const StCloseModal = styled.div`
   position: absolute;
   border-radius: 10px 10px 0 0;
-  top: calc(50% - 340px);
+  top: calc(50% - 338px);
   left: 50%;
   transform: translateY(-50%) translateX(-50%);
   width: 200px;
