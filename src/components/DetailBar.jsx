@@ -6,14 +6,14 @@ import {
   StInfo
 } from '../style/StDetailBar';
 import { useSelector } from 'react-redux';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import CategoryIcon from './CategoryIcon';
 import markerImg from '../assets/marker/defaultMarker.png';
 import callImg from '../assets/marker/call.png';
 import { IoClose } from 'react-icons/io5';
 import { toggleOpen } from '../redux/slices/ListDetailBarSlice';
 
-export default function DetailBar({ isOpenDetailBar, setIsOpneDetailBar }) {
+export default function DetailBar() {
   const placeList = useSelector((state) => state.place.place);
 
   const findId = useSelector((state) => state.marker.markerId);
