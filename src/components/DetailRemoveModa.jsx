@@ -78,6 +78,8 @@ export default function DetailRemoveModa({
 }
 
 const StContainer = styled.div`
+  backdrop-filter: blur(0.5rem);
+  z-index: 3;
   position: absolute;
   width: 100%;
   height: 100%;

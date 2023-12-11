@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const StContainer = styled.div`
+  backdrop-filter: blur(1rem);
   position: absolute;
   top: 50%;
   left: 50%;
