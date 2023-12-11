@@ -248,10 +248,7 @@ function Kakaomap({ setIsOpneDetailBar, isOpenDetailBar }) {
       }
       customOverlay.setMap(mapRef.current);
       dispatch(toggleOpen(true));
-      console.log('listToggle : ', listToggle);
-      if (listToggle === true) {
-        dispatch(listToggleOpen(false));
-      }
+      dispatch(listToggleOpen(false));
 
       currentOverlay = customOverlay;
 

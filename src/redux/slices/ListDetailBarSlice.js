@@ -10,7 +10,6 @@ const ListDetailBarSlice = createSlice({
   initialState,
   reducers: {
     toggleOpen: (state, action) => {
-      console.log('toggleOpen : ', action.payload);
       state.toggle = action.payload;
     },
     listToggleOpen: (state, action) => {
