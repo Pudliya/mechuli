@@ -15,7 +15,6 @@ import styled from 'styled-components';
 
 function Home() {
   const [isOpenDetailBar, setIsOpneDetailBar] = useState(false);
-  const [isOpenListDetailBar, setIsOpenListDetailBar] = useState(false);
   const [listFindTarget, setIsListFindTarget] = useState('');
 
   const queryClient = new QueryClient();
@@ -31,11 +30,7 @@ function Home() {
       </StContainer>
 
       <QueryClientProvider client={queryClient}>
-        <SideBarContainer
-          isOpenListDetailBar={isOpenListDetailBar}
-          setIsOpneListDetailBar={setIsOpenListDetailBar}
-          setIsListFindTarget={setIsListFindTarget}
-        />
+        <SideBarContainer setIsListFindTarget={setIsListFindTarget} />
 
         <DetailBar
           isOpenDetailBar={isOpenDetailBar}
@@ -44,8 +39,7 @@ function Home() {
         />
         <ListDetailBar
           listFindTarget={listFindTarget}
-          isOpenListDetailBar={isOpenListDetailBar}
-          setIsOpenListDetailBar={setIsOpenListDetailBar}
+          setIsListFindTarget={setIsListFindTarget}
         />
       </QueryClientProvider>
     </>

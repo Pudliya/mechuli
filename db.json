@@ -1,11 +1,3 @@
 {
-  "posts": [
-    {
-      "content": "맛있어요",
-      "img": [],
-      "password": "1111",
-      "placeId": "",
-      "id": 1
-    }
-  ]
+  "posts": []
 }

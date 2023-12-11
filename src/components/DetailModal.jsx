@@ -14,14 +14,19 @@ import {
 import { StDeleteImage } from '../style/StAddSlider';
 import { useSelector } from 'react-redux';
 
-function DetailModal({ isModal, setIsModal, listFindTarget }) {
+function DetailModal({
+  isModal,
+  setIsModal,
+  listFindTarget,
+  setIsListFindTarget
+}) {
   const [content, setContent] = useState('');
   const [password, setPassword] = useState('');
   const [showImages, setShowImages] = useState([]);
   const placeId = useSelector((state) => state.marker.markerId);
   const place = useSelector((state) => state.place.place);
 
-  console.log(listFindTarget);
+  // console.log(listFindTarget);
 
   const contentHandler = (e) => {
     setContent(e.target.value);

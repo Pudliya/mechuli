@@ -7,6 +7,7 @@ import { setmarkerId } from '../redux/slices/markerSlice';
 
 export default function SideBarLIst({ setIsListFindTarget }) {
   const storeList = useSelector((state) => state.place.place);
+  console.log(storeList);
   const dispatch = useDispatch();
   return (
     <>

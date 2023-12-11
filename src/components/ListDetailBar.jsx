@@ -16,7 +16,7 @@ import DetailRemoveModa from './DetailRemoveModa';
 import { listToggleOpen } from '../redux/slices/ListDetailBarSlice';
 import { IoClose } from 'react-icons/io5';
 
-export default function ListDetailBar({ listFindTarget }) {
+export default function ListDetailBar({ listFindTarget, setIsListFindTarget }) {
   const [isModal, setIsModal] = useState(false);
   const [isRemoveModal, setIsRemoveModal] = useState(false);
   const [foundTarget, setFoundTarget] = useState('');
@@ -69,6 +69,7 @@ export default function ListDetailBar({ listFindTarget }) {
                 isModal={isModal}
                 setIsModal={setIsModal}
                 listFindTarget={listFindTarget}
+                setIsListFindTarget={setIsListFindTarget}
               />
               <DetailRemoveModa
                 isRemoveModal={isRemoveModal}

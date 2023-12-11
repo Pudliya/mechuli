@@ -36,6 +36,7 @@ export default function AddReview({
       </StCard>
     );
   }
+
   return (
     <StListContainer>
       <StForm>
@@ -54,21 +55,7 @@ export default function AddReview({
       </StForm>
 
       {data.map((item) => {
-        // console.log(item.placeId === (placeId === listFindTarget));
-        console.log('item.placeId', item.placeId);
-        console.log('placeId', placeId);
-        console.log('listFindTarget', listFindTarget);
-        console.log('--------------------------------');
-        console.log('item.placeId == placeId', item.placeId == placeId);
-        console.log('placeId == listFindTarget', placeId == listFindTarget);
-        console.log(
-          'item.placeId == listFindTarget',
-          item.placeId == listFindTarget
-        );
-        console.log('--------------------------------');
-
-        console.log(item.placeId);
-        if (item.placeId === placeId || item.placeId === listFindTarget) {
+        if (item.placeId === listFindTarget) {
           return (
             <>
               <StCard key={item.id}>

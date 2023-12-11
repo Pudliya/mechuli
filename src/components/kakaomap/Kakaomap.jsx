@@ -12,7 +12,7 @@ import defaultMarker from '../../assets/marker/defaultMarker.png';
 import mechuliMarker from '../../assets/marker/mechuliMarker.png';
 import { StContainer } from '../../style/LayoutStyled';
 
-function Kakaomap({ setIsOpneDetailBar, isOpenDetailBar }) {
+function Kakaomap({ setIsOpneDetailBar }) {
   const { kakao } = window;
 
   const dispatch = useDispatch();

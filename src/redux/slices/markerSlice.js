@@ -10,12 +10,12 @@ const markerSlice = createSlice({
   initialState,
   reducers: {
     setmarkerId: (state, action) => {
-      const id = action.payload;
-      state.markerId = id;
+      state.markerId = action.payload;
+      state.listId = initialState.listId;
     },
     setlistId: (state, action) => {
-      const listId = action.payload;
-      state.listId = listId;
+      state.listId = action.payload;
+      state.markerId = initialState.markerId;
     }
   }
 });

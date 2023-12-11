@@ -1,4 +1,3 @@
-import AddReview from './AddReview';
 import {
   StContainer,
   StAvatarFigure,
@@ -6,23 +5,13 @@ import {
   StDetailbarCloseButton,
   StInfo
 } from '../style/StDetailBar';
-import DetailModal from './DetailModal';
-import { useState } from 'react';
-import DetailRemoveModa from './DetailRemoveModa';
 import { useSelector } from 'react-redux';
 import CategoryIcon from './CategoryIcon';
 import markerImg from '../assets/marker/defaultMarker.png';
 import callImg from '../assets/marker/call.png';
 import { IoClose } from 'react-icons/io5';
 
-export default function DetailBar({
-  isOpenDetailBar,
-  setIsOpneDetailBar,
-  listFindTarget
-}) {
-  const [isModal, setIsModal] = useState(false);
-  const [isRemoveModal, setIsRemoveModal] = useState(false);
-  const [foundTarget, setFoundTarget] = useState('');
+export default function DetailBar({ isOpenDetailBar, setIsOpneDetailBar }) {
   const placeList = useSelector((state) => state.place.place);
 
   const findId = useSelector((state) => state.marker.markerId);
@@ -57,24 +46,7 @@ export default function DetailBar({
                     {item.phone}
                   </p>
                 </StInfo>
-
-                <AddReview
-                  setIsModal={setIsModal}
-                  setIsRemoveModal={setIsRemoveModal}
-                  setFoundTarget={setFoundTarget}
-                  listFindTarget={listFindTarget}
-                />
               </StContainer>
-              <DetailModal
-                isModal={isModal}
-                setIsModal={setIsModal}
-                listFindTarget={listFindTarget}
-              />
-              <DetailRemoveModa
-                isRemoveModal={isRemoveModal}
-                setIsRemoveModal={setIsRemoveModal}
-                foundTarget={foundTarget}
-              />
             </>
           );
         }
